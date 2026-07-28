@@ -1,0 +1,2526 @@
+{
+  "version": 1,
+  "generatedAt": "2026-07-28T01:24:01.257Z",
+  "summary": {
+    "version": 2,
+    "coverageStartedAt": "2016-08-09T01:00:38.000Z",
+    "coverageEndedAt": "2026-07-13T14:54:16.000Z",
+    "totalEvents": 150253,
+    "totalMilliseconds": 16809668314,
+    "offlinePercentage": 0.7541876712368781,
+    "shufflePercentage": 68.41261072990224,
+    "skipPercentage": 15.716158745582451,
+    "completionPercentage": 48.25394501274517,
+    "incognitoPercentage": 0.2762008079705563,
+    "mostSkipped": [
+      {
+        "track": "Saran Pack",
+        "artist": "Tay-K",
+        "events": 194,
+        "value": 71
+      },
+      {
+        "track": "Gotta Blast (feat. Diego Money & Bandman Fari)",
+        "artist": "Tay-K",
+        "events": 98,
+        "value": 56
+      },
+      {
+        "track": "Lemonade",
+        "artist": "Tay-K",
+        "events": 142,
+        "value": 54
+      },
+      {
+        "track": "I <3 My Choppa",
+        "artist": "Tay-K",
+        "events": 125,
+        "value": 45
+      },
+      {
+        "track": "Long Time - Intro",
+        "artist": "Playboi Carti",
+        "events": 155,
+        "value": 43
+      }
+    ],
+    "highestSkipRate": [
+      {
+        "track": "Dope Boyz",
+        "artist": "Rico Ace",
+        "events": 15,
+        "value": 100
+      },
+      {
+        "track": "Trippple H",
+        "artist": "K Suave",
+        "events": 10,
+        "value": 100
+      },
+      {
+        "track": "Lif3",
+        "artist": "Homixide Gang",
+        "events": 10,
+        "value": 100
+      }
+    ],
+    "mostReliableCompletion": [
+      {
+        "track": "Winter Wonderland",
+        "artist": "Darlene Love",
+        "events": 17,
+        "value": 100
+      },
+      {
+        "track": "Who Are You?",
+        "artist": "Lil Xan",
+        "events": 16,
+        "value": 100
+      },
+      {
+        "track": "Rudolph The Red-Nosed Reindeer",
+        "artist": "Burl Ives",
+        "events": 15,
+        "value": 100
+      },
+      {
+        "track": "Chrome Heart Tags",
+        "artist": "Lil Uzi Vert",
+        "events": 13,
+        "value": 100
+      },
+      {
+        "track": "Moon",
+        "artist": "Kanye West",
+        "events": 13,
+        "value": 100
+      },
+      {
+        "track": "Just a waste",
+        "artist": "PinkPantheress",
+        "events": 12,
+        "value": 100
+      },
+      {
+        "track": "Rudolph The Red-Nosed Reindeer",
+        "artist": "Dean Martin",
+        "events": 10,
+        "value": 100
+      },
+      {
+        "track": "Charlie Brown Theme - 2nd Reprise",
+        "artist": "Vince Guaraldi",
+        "events": 10,
+        "value": 100
+      }
+    ],
+    "loveHateTrack": [
+      {
+        "track": "Free Young Thug",
+        "artist": "jahhde",
+        "events": 68,
+        "value": 47.05882352941176
+      },
+      {
+        "track": "Saran Pack",
+        "artist": "Tay-K",
+        "events": 194,
+        "value": 36.597938144329895
+      },
+      {
+        "track": "Lemonade",
+        "artist": "Tay-K",
+        "events": 142,
+        "value": 38.028169014084504
+      },
+      {
+        "track": "Penthouse Shordy",
+        "artist": "Dom Corleo",
+        "events": 48,
+        "value": 47.91666666666667
+      },
+      {
+        "track": "Wokeup",
+        "artist": "KANKAN",
+        "events": 63,
+        "value": 44.44444444444444
+      }
+    ],
+    "shuffleCasualty": [
+      {
+        "track": "Eye 2 Eye",
+        "artist": "Yung Bans",
+        "events": 22,
+        "value": 81.25
+      },
+      {
+        "track": "A.D.H.D",
+        "artist": "Kendrick Lamar",
+        "events": 15,
+        "value": 80
+      },
+      {
+        "track": "These Walls",
+        "artist": "Kendrick Lamar",
+        "events": 18,
+        "value": 80
+      },
+      {
+        "track": "Shoot Out The Roof",
+        "artist": "Lil Yachty",
+        "events": 21,
+        "value": 68.75
+      },
+      {
+        "track": "After You",
+        "artist": "Tay-K",
+        "events": 20,
+        "value": 66.66666666666666
+      }
+    ],
+    "topListeningTime": [
+      {
+        "track": "No More Parties In LA",
+        "artist": "Kanye West",
+        "events": 169,
+        "value": 10.75270138888889
+      },
+      {
+        "track": "90210 (feat. Kacy Hill)",
+        "artist": "Travis Scott",
+        "events": 192,
+        "value": 9.268295833333333
+      },
+      {
+        "track": "SMUCKERS (feat. Lil Wayne & Kanye West)",
+        "artist": "Tyler, The Creator",
+        "events": 215,
+        "value": 9.170904444444444
+      },
+      {
+        "track": "Bound 2",
+        "artist": "Kanye West",
+        "events": 185,
+        "value": 8.547894166666667
+      },
+      {
+        "track": "SWEET / I THOUGHT YOU WANTED TO DANCE (feat. Brent Faiyaz & Fana Hues)",
+        "artist": "Tyler, The Creator",
+        "events": 66,
+        "value": 8.035854722222222
+      }
+    ],
+    "mostPlayedOnShuffle": [
+      {
+        "track": "What in XXXTarnation",
+        "artist": "XXXTENTACION",
+        "events": 210,
+        "value": 173
+      },
+      {
+        "track": "Catch Me Outside",
+        "artist": "Ski Mask The Slump God",
+        "events": 177,
+        "value": 144
+      },
+      {
+        "track": "Reelin' In The Years",
+        "artist": "Steely Dan",
+        "events": 190,
+        "value": 142
+      },
+      {
+        "track": "Father Stretch My Hands Pt. 1",
+        "artist": "Kanye West",
+        "events": 202,
+        "value": 140
+      },
+      {
+        "track": "SKELETONS",
+        "artist": "Travis Scott",
+        "events": 202,
+        "value": 138
+      }
+    ],
+    "quickestSkips": [
+      {
+        "track": "SISTERS AND BROTHERS",
+        "artist": "Kanye West",
+        "events": 9,
+        "value": 0.28328571428571425
+      },
+      {
+        "track": "Dope Boyz",
+        "artist": "Rico Ace",
+        "events": 15,
+        "value": 0.3428
+      },
+      {
+        "track": "WHITE LINES (feat. Andre Troutman)",
+        "artist": "Kanye West",
+        "events": 7,
+        "value": 0.7992857142857144
+      },
+      {
+        "track": "Wavy Crete",
+        "artist": "Babyface Ray",
+        "events": 8,
+        "value": 0.80625
+      },
+      {
+        "track": "NUMBER 2",
+        "artist": "Lil Tecca",
+        "events": 10,
+        "value": 0.8365714285714285
+      }
+    ],
+    "directChoiceFavorites": [
+      {
+        "track": "CAN'T GET OVER YOU (feat. Clams Casino)",
+        "artist": "Joji",
+        "events": 169,
+        "value": 54
+      },
+      {
+        "track": "What in XXXTarnation",
+        "artist": "XXXTENTACION",
+        "events": 210,
+        "value": 49
+      },
+      {
+        "track": "Harness Your Hopes - B-side",
+        "artist": "Pavement",
+        "events": 106,
+        "value": 33
+      },
+      {
+        "track": "On Sight",
+        "artist": "Kanye West",
+        "events": 93,
+        "value": 33
+      },
+      {
+        "track": "Catch Me Outside",
+        "artist": "Ski Mask The Slump God",
+        "events": 177,
+        "value": 32
+      }
+    ],
+    "topAlbumsByTime": [
+      {
+        "label": "The Life Of Pablo — Kanye West",
+        "events": 1402,
+        "milliseconds": 209984767
+      },
+      {
+        "label": "Die Lit — Playboi Carti",
+        "events": 1573,
+        "milliseconds": 187187197
+      },
+      {
+        "label": "Rodeo — Travis Scott",
+        "events": 884,
+        "milliseconds": 149050265
+      },
+      {
+        "label": "IGOR — Tyler, The Creator",
+        "events": 997,
+        "milliseconds": 138669804
+      },
+      {
+        "label": "My Beautiful Dark Twisted Fantasy — Kanye West",
+        "events": 729,
+        "milliseconds": 131328432
+      }
+    ],
+    "platforms": [
+      {
+        "label": "iPhone 11 Pro",
+        "events": 69217,
+        "milliseconds": 7944418546
+      },
+      {
+        "label": "iPhone or iPad (model unavailable)",
+        "events": 43414,
+        "milliseconds": 4176387353
+      },
+      {
+        "label": "Windows PC",
+        "events": 13826,
+        "milliseconds": 1848590052
+      },
+      {
+        "label": "iPad Pro 12.9-inch (1st generation)",
+        "events": 13615,
+        "milliseconds": 1581037842
+      },
+      {
+        "label": "iPhone 8",
+        "events": 4514,
+        "milliseconds": 585537379
+      },
+      {
+        "label": "iPhone 6s",
+        "events": 3436,
+        "milliseconds": 334953319
+      },
+      {
+        "label": "Xbox One",
+        "events": 1298,
+        "milliseconds": 189935752
+      },
+      {
+        "label": "Xfinity TV",
+        "events": 511,
+        "milliseconds": 87871519
+      },
+      {
+        "label": "Samsung TV",
+        "events": 141,
+        "milliseconds": 18382920
+      },
+      {
+        "label": "Roku 4640X",
+        "events": 77,
+        "milliseconds": 13939307
+      },
+      {
+        "label": "Samsung QN75Q60AAFXZA TV",
+        "events": 65,
+        "milliseconds": 9760580
+      },
+      {
+        "label": "Roku 3810RW",
+        "events": 27,
+        "milliseconds": 6844456
+      },
+      {
+        "label": "PlayStation 4",
+        "events": 64,
+        "milliseconds": 6184203
+      },
+      {
+        "label": "iPhone 6",
+        "events": 18,
+        "milliseconds": 3039331
+      },
+      {
+        "label": "Amazon Echo Dot",
+        "events": 23,
+        "milliseconds": 2785755
+      },
+      {
+        "label": "Chromecast Ultra",
+        "events": 7,
+        "milliseconds": 0
+      }
+    ],
+    "countries": [
+      {
+        "label": "US",
+        "events": 149499,
+        "milliseconds": 16692218898
+      },
+      {
+        "label": "Unknown country",
+        "events": 718,
+        "milliseconds": 113827837
+      },
+      {
+        "label": "ES",
+        "events": 33,
+        "milliseconds": 3225222
+      },
+      {
+        "label": "MX",
+        "events": 3,
+        "milliseconds": 396357
+      }
+    ],
+    "usualCountry": "US",
+    "trips": [
+      {
+        "startedAt": "2018-03-29T12:45:56.000Z",
+        "endedAt": "2018-03-29T12:49:15.000Z",
+        "days": 1,
+        "events": 3,
+        "uniqueTracks": 2,
+        "milliseconds": 396357,
+        "countries": [
+          {
+            "label": "MX",
+            "events": 3,
+            "milliseconds": 396357
+          }
+        ],
+        "topTrack": {
+          "track": "Bird Is The Word",
+          "artist": "Ski Mask The Slump God",
+          "events": 2,
+          "value": 0.06634805555555555
+        }
+      },
+      {
+        "startedAt": "2023-07-11T08:31:25.000Z",
+        "endedAt": "2023-07-19T04:50:26.000Z",
+        "days": 8,
+        "events": 33,
+        "uniqueTracks": 17,
+        "milliseconds": 3225222,
+        "countries": [
+          {
+            "label": "ES",
+            "events": 33,
+            "milliseconds": 3225222
+          }
+        ],
+        "topTrack": {
+          "track": "Turn Your Phone Off",
+          "artist": "PinkPantheress",
+          "events": 10,
+          "value": 0.48034
+        }
+      }
+    ],
+    "reasonStarts": [
+      {
+        "label": "trackdone",
+        "events": 71523,
+        "milliseconds": 10681528814
+      },
+      {
+        "label": "fwdbtn",
+        "events": 51083,
+        "milliseconds": 3817858340
+      },
+      {
+        "label": "clickrow",
+        "events": 12414,
+        "milliseconds": 1014108056
+      },
+      {
+        "label": "playbtn",
+        "events": 6871,
+        "milliseconds": 678939659
+      },
+      {
+        "label": "appload",
+        "events": 3944,
+        "milliseconds": 288842204
+      },
+      {
+        "label": "backbtn",
+        "events": 2751,
+        "milliseconds": 220659083
+      },
+      {
+        "label": "remote",
+        "events": 1032,
+        "milliseconds": 78770122
+      },
+      {
+        "label": "trackerror",
+        "events": 441,
+        "milliseconds": 28171832
+      },
+      {
+        "label": "unknown",
+        "events": 185,
+        "milliseconds": 423111
+      },
+      {
+        "label": "endplay",
+        "events": 9,
+        "milliseconds": 367093
+      }
+    ],
+    "reasonEnds": [
+      {
+        "label": "trackdone",
+        "events": 72503,
+        "milliseconds": 13414128172
+      },
+      {
+        "label": "fwdbtn",
+        "events": 49960,
+        "milliseconds": 1915891431
+      },
+      {
+        "label": "endplay",
+        "events": 16565,
+        "milliseconds": 743548301
+      },
+      {
+        "label": "unexpected-exit-while-paused",
+        "events": 6484,
+        "milliseconds": 573186249
+      },
+      {
+        "label": "remote",
+        "events": 599,
+        "milliseconds": 42705433
+      },
+      {
+        "label": "logout",
+        "events": 547,
+        "milliseconds": 38955718
+      },
+      {
+        "label": "unknown",
+        "events": 528,
+        "milliseconds": 37538930
+      },
+      {
+        "label": "backbtn",
+        "events": 2719,
+        "milliseconds": 25967502
+      },
+      {
+        "label": "unexpected-exit",
+        "events": 296,
+        "milliseconds": 16242700
+      },
+      {
+        "label": "trackerror",
+        "events": 52,
+        "milliseconds": 1503878
+      }
+    ],
+    "listeningByDayHour": [
+      {
+        "day": 0,
+        "hour": 0,
+        "events": 801,
+        "milliseconds": 73666237
+      },
+      {
+        "day": 0,
+        "hour": 1,
+        "events": 787,
+        "milliseconds": 95148729
+      },
+      {
+        "day": 0,
+        "hour": 2,
+        "events": 686,
+        "milliseconds": 88966963
+      },
+      {
+        "day": 0,
+        "hour": 3,
+        "events": 608,
+        "milliseconds": 80407524
+      },
+      {
+        "day": 0,
+        "hour": 4,
+        "events": 678,
+        "milliseconds": 79340605
+      },
+      {
+        "day": 0,
+        "hour": 5,
+        "events": 453,
+        "milliseconds": 47039541
+      },
+      {
+        "day": 0,
+        "hour": 6,
+        "events": 386,
+        "milliseconds": 37474500
+      },
+      {
+        "day": 0,
+        "hour": 7,
+        "events": 218,
+        "milliseconds": 27466779
+      },
+      {
+        "day": 0,
+        "hour": 8,
+        "events": 125,
+        "milliseconds": 19469618
+      },
+      {
+        "day": 0,
+        "hour": 9,
+        "events": 118,
+        "milliseconds": 16936056
+      },
+      {
+        "day": 0,
+        "hour": 10,
+        "events": 45,
+        "milliseconds": 9499308
+      },
+      {
+        "day": 0,
+        "hour": 11,
+        "events": 47,
+        "milliseconds": 8111679
+      },
+      {
+        "day": 0,
+        "hour": 12,
+        "events": 70,
+        "milliseconds": 7312440
+      },
+      {
+        "day": 0,
+        "hour": 13,
+        "events": 183,
+        "milliseconds": 24842810
+      },
+      {
+        "day": 0,
+        "hour": 14,
+        "events": 534,
+        "milliseconds": 68278894
+      },
+      {
+        "day": 0,
+        "hour": 15,
+        "events": 1208,
+        "milliseconds": 135427989
+      },
+      {
+        "day": 0,
+        "hour": 16,
+        "events": 1814,
+        "milliseconds": 196884497
+      },
+      {
+        "day": 0,
+        "hour": 17,
+        "events": 1484,
+        "milliseconds": 170600806
+      },
+      {
+        "day": 0,
+        "hour": 18,
+        "events": 1480,
+        "milliseconds": 174369479
+      },
+      {
+        "day": 0,
+        "hour": 19,
+        "events": 1264,
+        "milliseconds": 142145399
+      },
+      {
+        "day": 0,
+        "hour": 20,
+        "events": 1239,
+        "milliseconds": 141380488
+      },
+      {
+        "day": 0,
+        "hour": 21,
+        "events": 1327,
+        "milliseconds": 154726421
+      },
+      {
+        "day": 0,
+        "hour": 22,
+        "events": 1362,
+        "milliseconds": 149058527
+      },
+      {
+        "day": 0,
+        "hour": 23,
+        "events": 1191,
+        "milliseconds": 116822645
+      },
+      {
+        "day": 1,
+        "hour": 0,
+        "events": 1188,
+        "milliseconds": 135831284
+      },
+      {
+        "day": 1,
+        "hour": 1,
+        "events": 1189,
+        "milliseconds": 133899326
+      },
+      {
+        "day": 1,
+        "hour": 2,
+        "events": 867,
+        "milliseconds": 105055434
+      },
+      {
+        "day": 1,
+        "hour": 3,
+        "events": 1010,
+        "milliseconds": 112937349
+      },
+      {
+        "day": 1,
+        "hour": 4,
+        "events": 869,
+        "milliseconds": 99070872
+      },
+      {
+        "day": 1,
+        "hour": 5,
+        "events": 405,
+        "milliseconds": 54654114
+      },
+      {
+        "day": 1,
+        "hour": 6,
+        "events": 130,
+        "milliseconds": 18615353
+      },
+      {
+        "day": 1,
+        "hour": 7,
+        "events": 59,
+        "milliseconds": 6288402
+      },
+      {
+        "day": 1,
+        "hour": 8,
+        "events": 3,
+        "milliseconds": 397909
+      },
+      {
+        "day": 1,
+        "hour": 9,
+        "events": 2,
+        "milliseconds": 252861
+      },
+      {
+        "day": 1,
+        "hour": 10,
+        "events": 3,
+        "milliseconds": 219910
+      },
+      {
+        "day": 1,
+        "hour": 11,
+        "events": 214,
+        "milliseconds": 19153679
+      },
+      {
+        "day": 1,
+        "hour": 12,
+        "events": 442,
+        "milliseconds": 45663148
+      },
+      {
+        "day": 1,
+        "hour": 13,
+        "events": 483,
+        "milliseconds": 49478043
+      },
+      {
+        "day": 1,
+        "hour": 14,
+        "events": 622,
+        "milliseconds": 66585757
+      },
+      {
+        "day": 1,
+        "hour": 15,
+        "events": 1651,
+        "milliseconds": 167493937
+      },
+      {
+        "day": 1,
+        "hour": 16,
+        "events": 1929,
+        "milliseconds": 194222287
+      },
+      {
+        "day": 1,
+        "hour": 17,
+        "events": 1798,
+        "milliseconds": 197678448
+      },
+      {
+        "day": 1,
+        "hour": 18,
+        "events": 1723,
+        "milliseconds": 190468035
+      },
+      {
+        "day": 1,
+        "hour": 19,
+        "events": 1528,
+        "milliseconds": 182183762
+      },
+      {
+        "day": 1,
+        "hour": 20,
+        "events": 1637,
+        "milliseconds": 175633602
+      },
+      {
+        "day": 1,
+        "hour": 21,
+        "events": 1637,
+        "milliseconds": 184800476
+      },
+      {
+        "day": 1,
+        "hour": 22,
+        "events": 1494,
+        "milliseconds": 170962664
+      },
+      {
+        "day": 1,
+        "hour": 23,
+        "events": 1447,
+        "milliseconds": 163137659
+      },
+      {
+        "day": 2,
+        "hour": 0,
+        "events": 1209,
+        "milliseconds": 148783150
+      },
+      {
+        "day": 2,
+        "hour": 1,
+        "events": 1160,
+        "milliseconds": 139768706
+      },
+      {
+        "day": 2,
+        "hour": 2,
+        "events": 1221,
+        "milliseconds": 137587007
+      },
+      {
+        "day": 2,
+        "hour": 3,
+        "events": 1071,
+        "milliseconds": 135047023
+      },
+      {
+        "day": 2,
+        "hour": 4,
+        "events": 721,
+        "milliseconds": 94840416
+      },
+      {
+        "day": 2,
+        "hour": 5,
+        "events": 369,
+        "milliseconds": 49046793
+      },
+      {
+        "day": 2,
+        "hour": 6,
+        "events": 213,
+        "milliseconds": 29515349
+      },
+      {
+        "day": 2,
+        "hour": 7,
+        "events": 125,
+        "milliseconds": 14933493
+      },
+      {
+        "day": 2,
+        "hour": 8,
+        "events": 69,
+        "milliseconds": 9982154
+      },
+      {
+        "day": 2,
+        "hour": 9,
+        "events": 27,
+        "milliseconds": 3082308
+      },
+      {
+        "day": 2,
+        "hour": 10,
+        "events": 9,
+        "milliseconds": 868574
+      },
+      {
+        "day": 2,
+        "hour": 11,
+        "events": 297,
+        "milliseconds": 25291576
+      },
+      {
+        "day": 2,
+        "hour": 12,
+        "events": 691,
+        "milliseconds": 71165530
+      },
+      {
+        "day": 2,
+        "hour": 13,
+        "events": 670,
+        "milliseconds": 74658482
+      },
+      {
+        "day": 2,
+        "hour": 14,
+        "events": 758,
+        "milliseconds": 75267326
+      },
+      {
+        "day": 2,
+        "hour": 15,
+        "events": 1212,
+        "milliseconds": 125495749
+      },
+      {
+        "day": 2,
+        "hour": 16,
+        "events": 1599,
+        "milliseconds": 152866149
+      },
+      {
+        "day": 2,
+        "hour": 17,
+        "events": 1967,
+        "milliseconds": 183823289
+      },
+      {
+        "day": 2,
+        "hour": 18,
+        "events": 1647,
+        "milliseconds": 179430816
+      },
+      {
+        "day": 2,
+        "hour": 19,
+        "events": 1816,
+        "milliseconds": 195093121
+      },
+      {
+        "day": 2,
+        "hour": 20,
+        "events": 1443,
+        "milliseconds": 170555018
+      },
+      {
+        "day": 2,
+        "hour": 21,
+        "events": 1713,
+        "milliseconds": 193204091
+      },
+      {
+        "day": 2,
+        "hour": 22,
+        "events": 1604,
+        "milliseconds": 163124787
+      },
+      {
+        "day": 2,
+        "hour": 23,
+        "events": 1315,
+        "milliseconds": 150659652
+      },
+      {
+        "day": 3,
+        "hour": 0,
+        "events": 1241,
+        "milliseconds": 151683367
+      },
+      {
+        "day": 3,
+        "hour": 1,
+        "events": 1369,
+        "milliseconds": 162941670
+      },
+      {
+        "day": 3,
+        "hour": 2,
+        "events": 1031,
+        "milliseconds": 119201482
+      },
+      {
+        "day": 3,
+        "hour": 3,
+        "events": 1006,
+        "milliseconds": 121989065
+      },
+      {
+        "day": 3,
+        "hour": 4,
+        "events": 688,
+        "milliseconds": 94745326
+      },
+      {
+        "day": 3,
+        "hour": 5,
+        "events": 406,
+        "milliseconds": 47916981
+      },
+      {
+        "day": 3,
+        "hour": 6,
+        "events": 219,
+        "milliseconds": 31829140
+      },
+      {
+        "day": 3,
+        "hour": 7,
+        "events": 114,
+        "milliseconds": 16904716
+      },
+      {
+        "day": 3,
+        "hour": 8,
+        "events": 46,
+        "milliseconds": 5912262
+      },
+      {
+        "day": 3,
+        "hour": 9,
+        "events": 10,
+        "milliseconds": 1431708
+      },
+      {
+        "day": 3,
+        "hour": 10,
+        "events": 67,
+        "milliseconds": 5551407
+      },
+      {
+        "day": 3,
+        "hour": 11,
+        "events": 389,
+        "milliseconds": 36571401
+      },
+      {
+        "day": 3,
+        "hour": 12,
+        "events": 808,
+        "milliseconds": 77979801
+      },
+      {
+        "day": 3,
+        "hour": 13,
+        "events": 740,
+        "milliseconds": 82861085
+      },
+      {
+        "day": 3,
+        "hour": 14,
+        "events": 752,
+        "milliseconds": 81675910
+      },
+      {
+        "day": 3,
+        "hour": 15,
+        "events": 1177,
+        "milliseconds": 124270334
+      },
+      {
+        "day": 3,
+        "hour": 16,
+        "events": 1765,
+        "milliseconds": 183200281
+      },
+      {
+        "day": 3,
+        "hour": 17,
+        "events": 2133,
+        "milliseconds": 230459400
+      },
+      {
+        "day": 3,
+        "hour": 18,
+        "events": 1693,
+        "milliseconds": 187174957
+      },
+      {
+        "day": 3,
+        "hour": 19,
+        "events": 1455,
+        "milliseconds": 174424993
+      },
+      {
+        "day": 3,
+        "hour": 20,
+        "events": 1777,
+        "milliseconds": 205741414
+      },
+      {
+        "day": 3,
+        "hour": 21,
+        "events": 1930,
+        "milliseconds": 207988872
+      },
+      {
+        "day": 3,
+        "hour": 22,
+        "events": 1562,
+        "milliseconds": 170843957
+      },
+      {
+        "day": 3,
+        "hour": 23,
+        "events": 1540,
+        "milliseconds": 149330261
+      },
+      {
+        "day": 4,
+        "hour": 0,
+        "events": 1135,
+        "milliseconds": 131796665
+      },
+      {
+        "day": 4,
+        "hour": 1,
+        "events": 1142,
+        "milliseconds": 128930354
+      },
+      {
+        "day": 4,
+        "hour": 2,
+        "events": 1024,
+        "milliseconds": 123052823
+      },
+      {
+        "day": 4,
+        "hour": 3,
+        "events": 1088,
+        "milliseconds": 138761001
+      },
+      {
+        "day": 4,
+        "hour": 4,
+        "events": 786,
+        "milliseconds": 98518426
+      },
+      {
+        "day": 4,
+        "hour": 5,
+        "events": 353,
+        "milliseconds": 51385255
+      },
+      {
+        "day": 4,
+        "hour": 6,
+        "events": 250,
+        "milliseconds": 32581270
+      },
+      {
+        "day": 4,
+        "hour": 7,
+        "events": 82,
+        "milliseconds": 11131042
+      },
+      {
+        "day": 4,
+        "hour": 8,
+        "events": 45,
+        "milliseconds": 7244729
+      },
+      {
+        "day": 4,
+        "hour": 9,
+        "events": 17,
+        "milliseconds": 2214863
+      },
+      {
+        "day": 4,
+        "hour": 10,
+        "events": 24,
+        "milliseconds": 2479066
+      },
+      {
+        "day": 4,
+        "hour": 11,
+        "events": 231,
+        "milliseconds": 23794914
+      },
+      {
+        "day": 4,
+        "hour": 12,
+        "events": 664,
+        "milliseconds": 67698876
+      },
+      {
+        "day": 4,
+        "hour": 13,
+        "events": 698,
+        "milliseconds": 69847901
+      },
+      {
+        "day": 4,
+        "hour": 14,
+        "events": 675,
+        "milliseconds": 74051626
+      },
+      {
+        "day": 4,
+        "hour": 15,
+        "events": 1630,
+        "milliseconds": 163603015
+      },
+      {
+        "day": 4,
+        "hour": 16,
+        "events": 1794,
+        "milliseconds": 188402475
+      },
+      {
+        "day": 4,
+        "hour": 17,
+        "events": 1951,
+        "milliseconds": 209154372
+      },
+      {
+        "day": 4,
+        "hour": 18,
+        "events": 1755,
+        "milliseconds": 197167921
+      },
+      {
+        "day": 4,
+        "hour": 19,
+        "events": 1530,
+        "milliseconds": 188085363
+      },
+      {
+        "day": 4,
+        "hour": 20,
+        "events": 1772,
+        "milliseconds": 181187374
+      },
+      {
+        "day": 4,
+        "hour": 21,
+        "events": 1549,
+        "milliseconds": 174866505
+      },
+      {
+        "day": 4,
+        "hour": 22,
+        "events": 1713,
+        "milliseconds": 186664810
+      },
+      {
+        "day": 4,
+        "hour": 23,
+        "events": 1516,
+        "milliseconds": 160358581
+      },
+      {
+        "day": 5,
+        "hour": 0,
+        "events": 1241,
+        "milliseconds": 131988849
+      },
+      {
+        "day": 5,
+        "hour": 1,
+        "events": 1215,
+        "milliseconds": 125775037
+      },
+      {
+        "day": 5,
+        "hour": 2,
+        "events": 970,
+        "milliseconds": 117100268
+      },
+      {
+        "day": 5,
+        "hour": 3,
+        "events": 878,
+        "milliseconds": 107308760
+      },
+      {
+        "day": 5,
+        "hour": 4,
+        "events": 804,
+        "milliseconds": 100839252
+      },
+      {
+        "day": 5,
+        "hour": 5,
+        "events": 495,
+        "milliseconds": 63260463
+      },
+      {
+        "day": 5,
+        "hour": 6,
+        "events": 288,
+        "milliseconds": 34545339
+      },
+      {
+        "day": 5,
+        "hour": 7,
+        "events": 163,
+        "milliseconds": 18631836
+      },
+      {
+        "day": 5,
+        "hour": 8,
+        "events": 26,
+        "milliseconds": 3255496
+      },
+      {
+        "day": 5,
+        "hour": 9,
+        "events": 9,
+        "milliseconds": 1266761
+      },
+      {
+        "day": 5,
+        "hour": 10,
+        "events": 23,
+        "milliseconds": 2108230
+      },
+      {
+        "day": 5,
+        "hour": 11,
+        "events": 341,
+        "milliseconds": 22482839
+      },
+      {
+        "day": 5,
+        "hour": 12,
+        "events": 514,
+        "milliseconds": 59332575
+      },
+      {
+        "day": 5,
+        "hour": 13,
+        "events": 538,
+        "milliseconds": 56679064
+      },
+      {
+        "day": 5,
+        "hour": 14,
+        "events": 677,
+        "milliseconds": 64961353
+      },
+      {
+        "day": 5,
+        "hour": 15,
+        "events": 1314,
+        "milliseconds": 130761903
+      },
+      {
+        "day": 5,
+        "hour": 16,
+        "events": 1757,
+        "milliseconds": 192991800
+      },
+      {
+        "day": 5,
+        "hour": 17,
+        "events": 1964,
+        "milliseconds": 223765073
+      },
+      {
+        "day": 5,
+        "hour": 18,
+        "events": 1357,
+        "milliseconds": 157627671
+      },
+      {
+        "day": 5,
+        "hour": 19,
+        "events": 1248,
+        "milliseconds": 137948298
+      },
+      {
+        "day": 5,
+        "hour": 20,
+        "events": 1396,
+        "milliseconds": 172258101
+      },
+      {
+        "day": 5,
+        "hour": 21,
+        "events": 1408,
+        "milliseconds": 164245971
+      },
+      {
+        "day": 5,
+        "hour": 22,
+        "events": 1180,
+        "milliseconds": 134973245
+      },
+      {
+        "day": 5,
+        "hour": 23,
+        "events": 1283,
+        "milliseconds": 134143629
+      },
+      {
+        "day": 6,
+        "hour": 0,
+        "events": 1121,
+        "milliseconds": 122040967
+      },
+      {
+        "day": 6,
+        "hour": 1,
+        "events": 808,
+        "milliseconds": 91526963
+      },
+      {
+        "day": 6,
+        "hour": 2,
+        "events": 755,
+        "milliseconds": 92063749
+      },
+      {
+        "day": 6,
+        "hour": 3,
+        "events": 666,
+        "milliseconds": 86470720
+      },
+      {
+        "day": 6,
+        "hour": 4,
+        "events": 703,
+        "milliseconds": 96298711
+      },
+      {
+        "day": 6,
+        "hour": 5,
+        "events": 472,
+        "milliseconds": 68004953
+      },
+      {
+        "day": 6,
+        "hour": 6,
+        "events": 354,
+        "milliseconds": 43546807
+      },
+      {
+        "day": 6,
+        "hour": 7,
+        "events": 116,
+        "milliseconds": 15990917
+      },
+      {
+        "day": 6,
+        "hour": 8,
+        "events": 109,
+        "milliseconds": 12729709
+      },
+      {
+        "day": 6,
+        "hour": 9,
+        "events": 23,
+        "milliseconds": 2709628
+      },
+      {
+        "day": 6,
+        "hour": 10,
+        "events": 6,
+        "milliseconds": 882726
+      },
+      {
+        "day": 6,
+        "hour": 11,
+        "events": 45,
+        "milliseconds": 4595511
+      },
+      {
+        "day": 6,
+        "hour": 12,
+        "events": 142,
+        "milliseconds": 16024651
+      },
+      {
+        "day": 6,
+        "hour": 13,
+        "events": 316,
+        "milliseconds": 31970971
+      },
+      {
+        "day": 6,
+        "hour": 14,
+        "events": 685,
+        "milliseconds": 65385196
+      },
+      {
+        "day": 6,
+        "hour": 15,
+        "events": 1253,
+        "milliseconds": 122728406
+      },
+      {
+        "day": 6,
+        "hour": 16,
+        "events": 2003,
+        "milliseconds": 212236351
+      },
+      {
+        "day": 6,
+        "hour": 17,
+        "events": 2003,
+        "milliseconds": 233668510
+      },
+      {
+        "day": 6,
+        "hour": 18,
+        "events": 1554,
+        "milliseconds": 176742553
+      },
+      {
+        "day": 6,
+        "hour": 19,
+        "events": 1540,
+        "milliseconds": 162252602
+      },
+      {
+        "day": 6,
+        "hour": 20,
+        "events": 1079,
+        "milliseconds": 130442274
+      },
+      {
+        "day": 6,
+        "hour": 21,
+        "events": 992,
+        "milliseconds": 119060429
+      },
+      {
+        "day": 6,
+        "hour": 22,
+        "events": 993,
+        "milliseconds": 112788666
+      },
+      {
+        "day": 6,
+        "hour": 23,
+        "events": 720,
+        "milliseconds": 81492710
+      }
+    ],
+    "sessionLengths": [
+      {
+        "label": "Under 15m",
+        "sessions": 7748,
+        "events": 31157,
+        "milliseconds": 2451700723
+      },
+      {
+        "label": "15–30m",
+        "sessions": 2378,
+        "events": 28977,
+        "milliseconds": 3068610058
+      },
+      {
+        "label": "30–60m",
+        "sessions": 1612,
+        "events": 35410,
+        "milliseconds": 4055645143
+      },
+      {
+        "label": "1–2h",
+        "sessions": 874,
+        "events": 33941,
+        "milliseconds": 4294945535
+      },
+      {
+        "label": "2–4h",
+        "sessions": 229,
+        "events": 16047,
+        "milliseconds": 2214792271
+      },
+      {
+        "label": "4h+",
+        "sessions": 38,
+        "events": 4721,
+        "milliseconds": 723974584
+      }
+    ],
+    "albumEngagement": [
+      {
+        "album": "The Life Of Pablo",
+        "artist": "Kanye West",
+        "events": 1402,
+        "milliseconds": 209984767,
+        "completedEvents": 835,
+        "uniqueTracks": 20
+      },
+      {
+        "album": "Die Lit",
+        "artist": "Playboi Carti",
+        "events": 1573,
+        "milliseconds": 187187197,
+        "completedEvents": 891,
+        "uniqueTracks": 19
+      },
+      {
+        "album": "Rodeo",
+        "artist": "Travis Scott",
+        "events": 884,
+        "milliseconds": 149050265,
+        "completedEvents": 454,
+        "uniqueTracks": 16
+      },
+      {
+        "album": "IGOR",
+        "artist": "Tyler, The Creator",
+        "events": 997,
+        "milliseconds": 138669804,
+        "completedEvents": 608,
+        "uniqueTracks": 12
+      },
+      {
+        "album": "My Beautiful Dark Twisted Fantasy",
+        "artist": "Kanye West",
+        "events": 729,
+        "milliseconds": 131328432,
+        "completedEvents": 306,
+        "uniqueTracks": 13
+      },
+      {
+        "album": "Graduation",
+        "artist": "Kanye West",
+        "events": 857,
+        "milliseconds": 125053798,
+        "completedEvents": 480,
+        "uniqueTracks": 15
+      },
+      {
+        "album": "Blonde",
+        "artist": "Frank Ocean",
+        "events": 812,
+        "milliseconds": 120198891,
+        "completedEvents": 459,
+        "uniqueTracks": 17
+      },
+      {
+        "album": "Playboi Carti",
+        "artist": "Playboi Carti",
+        "events": 1056,
+        "milliseconds": 118520473,
+        "completedEvents": 551,
+        "uniqueTracks": 15
+      },
+      {
+        "album": "CALL ME IF YOU GET LOST",
+        "artist": "Tyler, The Creator",
+        "events": 606,
+        "milliseconds": 107861108,
+        "completedEvents": 397,
+        "uniqueTracks": 16
+      },
+      {
+        "album": "Yeezus",
+        "artist": "Kanye West",
+        "events": 664,
+        "milliseconds": 105174449,
+        "completedEvents": 393,
+        "uniqueTracks": 10
+      },
+      {
+        "album": "ASTROWORLD",
+        "artist": "Travis Scott",
+        "events": 953,
+        "milliseconds": 101907004,
+        "completedEvents": 460,
+        "uniqueTracks": 17
+      },
+      {
+        "album": "BALLADS 1",
+        "artist": "Joji",
+        "events": 903,
+        "milliseconds": 98595421,
+        "completedEvents": 528,
+        "uniqueTracks": 12
+      },
+      {
+        "album": "Whole Lotta Red",
+        "artist": "Playboi Carti",
+        "events": 1037,
+        "milliseconds": 96980543,
+        "completedEvents": 607,
+        "uniqueTracks": 24
+      },
+      {
+        "album": "Cherry Bomb",
+        "artist": "Tyler, The Creator",
+        "events": 528,
+        "milliseconds": 92028373,
+        "completedEvents": 288,
+        "uniqueTracks": 13
+      },
+      {
+        "album": "Flower Boy",
+        "artist": "Tyler, The Creator",
+        "events": 645,
+        "milliseconds": 91970742,
+        "completedEvents": 382,
+        "uniqueTracks": 14
+      }
+    ],
+    "listeningConcentration": [
+      {
+        "rank": 10,
+        "percentage": 1.7765133994422015,
+        "milliseconds": 298626010
+      },
+      {
+        "rank": 25,
+        "percentage": 3.729134634250464,
+        "milliseconds": 626855163
+      },
+      {
+        "rank": 50,
+        "percentage": 6.377720214188399,
+        "milliseconds": 1072073614
+      },
+      {
+        "rank": 100,
+        "percentage": 10.717073402927348,
+        "milliseconds": 1801504492
+      }
+    ],
+    "skipTiming": [
+      {
+        "label": "Under 5s",
+        "events": 11763,
+        "percentage": 49.81366985686457
+      },
+      {
+        "label": "5–15s",
+        "events": 3083,
+        "percentage": 13.055814347421022
+      },
+      {
+        "label": "15–30s",
+        "events": 1665,
+        "percentage": 7.050902007283814
+      },
+      {
+        "label": "30–60s",
+        "events": 1831,
+        "percentage": 7.753874820022021
+      },
+      {
+        "label": "1–2m",
+        "events": 2514,
+        "percentage": 10.646226814601507
+      },
+      {
+        "label": "2m+",
+        "events": 2758,
+        "percentage": 11.679512153807064
+      }
+    ],
+    "sessionAttention": [
+      {
+        "label": "Opening third",
+        "events": 51404,
+        "skippedEvents": 8894,
+        "completedEvents": 22066
+      },
+      {
+        "label": "Middle third",
+        "events": 48424,
+        "skippedEvents": 7999,
+        "completedEvents": 24643
+      },
+      {
+        "label": "Closing third",
+        "events": 45665,
+        "skippedEvents": 6052,
+        "completedEvents": 24928
+      }
+    ],
+    "listeningModes": [
+      {
+        "label": "Direct choice",
+        "events": 19285,
+        "skippedEvents": 2914,
+        "completedEvents": 6363,
+        "milliseconds": 1693047715
+      },
+      {
+        "label": "Shuffled",
+        "events": 92699,
+        "skippedEvents": 16361,
+        "completedEvents": 45554,
+        "milliseconds": 10507436824
+      },
+      {
+        "label": "Other starts",
+        "events": 38269,
+        "skippedEvents": 4339,
+        "completedEvents": 20586,
+        "milliseconds": 4609183775
+      }
+    ],
+    "replayDelays": [
+      {
+        "label": "Under 1h",
+        "events": 12378,
+        "percentage": 9.797682370820668
+      },
+      {
+        "label": "1–24h",
+        "events": 19257,
+        "percentage": 15.242686170212766
+      },
+      {
+        "label": "1–7d",
+        "events": 31345,
+        "percentage": 24.81082193515704
+      },
+      {
+        "label": "1–4w",
+        "events": 26521,
+        "percentage": 20.99243287740628
+      },
+      {
+        "label": "1–6mo",
+        "events": 24878,
+        "percentage": 19.691932624113477
+      },
+      {
+        "label": "6mo+",
+        "events": 11957,
+        "percentage": 9.464444022289767
+      }
+    ],
+    "sessionVariety": [
+      {
+        "label": "Under 15m",
+        "sessions": 7748,
+        "averageMinutes": 5.273835662966787,
+        "averageArtists": 2.9812854930304593,
+        "averageTracks": 3.6633970056788847,
+        "averagePlays": 4.021295818275684
+      },
+      {
+        "label": "15–30m",
+        "sessions": 2378,
+        "averageMinutes": 21.506939010372864,
+        "averageArtists": 7.845668629100084,
+        "averageTracks": 11.172834314550043,
+        "averagePlays": 12.185449957947855
+      },
+      {
+        "label": "30–60m",
+        "sessions": 1612,
+        "averageMinutes": 41.931814960711336,
+        "averageArtists": 13.281637717121589,
+        "averageTracks": 20.205955334987593,
+        "averagePlays": 21.96650124069479
+      },
+      {
+        "label": "1–2h",
+        "sessions": 874,
+        "averageMinutes": 81.90208876811593,
+        "averageArtists": 21.291762013729976,
+        "averageTracks": 35.64645308924485,
+        "averagePlays": 38.83409610983982
+      },
+      {
+        "label": "2–4h",
+        "sessions": 229,
+        "averageMinutes": 161.1930328238719,
+        "averageArtists": 37.19213973799127,
+        "averageTracks": 63.11353711790393,
+        "averagePlays": 70.07423580786026
+      },
+      {
+        "label": "4h+",
+        "sessions": 38,
+        "averageMinutes": 317.5327122807018,
+        "averageArtists": 56.10526315789474,
+        "averageTracks": 107.47368421052632,
+        "averagePlays": 124.23684210526316
+      }
+    ],
+    "durationByMonth": [
+      {
+        "month": "2016-08",
+        "milliseconds": 842104,
+        "events": 11
+      },
+      {
+        "month": "2016-12",
+        "milliseconds": 1808025,
+        "events": 7
+      },
+      {
+        "month": "2017-01",
+        "milliseconds": 1818194,
+        "events": 26
+      },
+      {
+        "month": "2017-02",
+        "milliseconds": 23766589,
+        "events": 183
+      },
+      {
+        "month": "2017-03",
+        "milliseconds": 9943255,
+        "events": 81
+      },
+      {
+        "month": "2017-04",
+        "milliseconds": 391930,
+        "events": 14
+      },
+      {
+        "month": "2017-05",
+        "milliseconds": 63441113,
+        "events": 654
+      },
+      {
+        "month": "2017-06",
+        "milliseconds": 25898713,
+        "events": 251
+      },
+      {
+        "month": "2017-07",
+        "milliseconds": 45771617,
+        "events": 466
+      },
+      {
+        "month": "2017-08",
+        "milliseconds": 46877442,
+        "events": 655
+      },
+      {
+        "month": "2017-09",
+        "milliseconds": 59306801,
+        "events": 701
+      },
+      {
+        "month": "2017-10",
+        "milliseconds": 47740763,
+        "events": 480
+      },
+      {
+        "month": "2017-11",
+        "milliseconds": 95843947,
+        "events": 783
+      },
+      {
+        "month": "2017-12",
+        "milliseconds": 82504426,
+        "events": 703
+      },
+      {
+        "month": "2018-01",
+        "milliseconds": 48807025,
+        "events": 372
+      },
+      {
+        "month": "2018-02",
+        "milliseconds": 97875932,
+        "events": 688
+      },
+      {
+        "month": "2018-03",
+        "milliseconds": 76573463,
+        "events": 672
+      },
+      {
+        "month": "2018-04",
+        "milliseconds": 39148589,
+        "events": 370
+      },
+      {
+        "month": "2018-05",
+        "milliseconds": 6304864,
+        "events": 70
+      },
+      {
+        "month": "2018-06",
+        "milliseconds": 17063656,
+        "events": 112
+      },
+      {
+        "month": "2018-07",
+        "milliseconds": 29977787,
+        "events": 223
+      },
+      {
+        "month": "2018-08",
+        "milliseconds": 86068981,
+        "events": 884
+      },
+      {
+        "month": "2018-09",
+        "milliseconds": 55780034,
+        "events": 584
+      },
+      {
+        "month": "2018-10",
+        "milliseconds": 80145778,
+        "events": 747
+      },
+      {
+        "month": "2018-11",
+        "milliseconds": 85583202,
+        "events": 915
+      },
+      {
+        "month": "2018-12",
+        "milliseconds": 48151155,
+        "events": 469
+      },
+      {
+        "month": "2019-01",
+        "milliseconds": 43919239,
+        "events": 510
+      },
+      {
+        "month": "2019-02",
+        "milliseconds": 75338920,
+        "events": 596
+      },
+      {
+        "month": "2019-03",
+        "milliseconds": 219527973,
+        "events": 1657
+      },
+      {
+        "month": "2019-04",
+        "milliseconds": 110886881,
+        "events": 685
+      },
+      {
+        "month": "2019-05",
+        "milliseconds": 151064556,
+        "events": 1334
+      },
+      {
+        "month": "2019-06",
+        "milliseconds": 165025853,
+        "events": 1415
+      },
+      {
+        "month": "2019-07",
+        "milliseconds": 120569681,
+        "events": 915
+      },
+      {
+        "month": "2019-08",
+        "milliseconds": 216552959,
+        "events": 1571
+      },
+      {
+        "month": "2019-09",
+        "milliseconds": 170801963,
+        "events": 1410
+      },
+      {
+        "month": "2019-10",
+        "milliseconds": 342460925,
+        "events": 2607
+      },
+      {
+        "month": "2019-11",
+        "milliseconds": 319769894,
+        "events": 2763
+      },
+      {
+        "month": "2019-12",
+        "milliseconds": 330520123,
+        "events": 2462
+      },
+      {
+        "month": "2020-01",
+        "milliseconds": 229719809,
+        "events": 1980
+      },
+      {
+        "month": "2020-02",
+        "milliseconds": 247721457,
+        "events": 2279
+      },
+      {
+        "month": "2020-03",
+        "milliseconds": 234450870,
+        "events": 1920
+      },
+      {
+        "month": "2020-04",
+        "milliseconds": 204870091,
+        "events": 1805
+      },
+      {
+        "month": "2020-05",
+        "milliseconds": 267751588,
+        "events": 2474
+      },
+      {
+        "month": "2020-06",
+        "milliseconds": 239711617,
+        "events": 2436
+      },
+      {
+        "month": "2020-07",
+        "milliseconds": 163104830,
+        "events": 1694
+      },
+      {
+        "month": "2020-08",
+        "milliseconds": 201789818,
+        "events": 1923
+      },
+      {
+        "month": "2020-09",
+        "milliseconds": 260077849,
+        "events": 1705
+      },
+      {
+        "month": "2020-10",
+        "milliseconds": 249604246,
+        "events": 2065
+      },
+      {
+        "month": "2020-11",
+        "milliseconds": 262295649,
+        "events": 2064
+      },
+      {
+        "month": "2020-12",
+        "milliseconds": 216484065,
+        "events": 1614
+      },
+      {
+        "month": "2021-01",
+        "milliseconds": 232838074,
+        "events": 1971
+      },
+      {
+        "month": "2021-02",
+        "milliseconds": 252655381,
+        "events": 2028
+      },
+      {
+        "month": "2021-03",
+        "milliseconds": 239265095,
+        "events": 2029
+      },
+      {
+        "month": "2021-04",
+        "milliseconds": 267407277,
+        "events": 1997
+      },
+      {
+        "month": "2021-05",
+        "milliseconds": 280146689,
+        "events": 2071
+      },
+      {
+        "month": "2021-06",
+        "milliseconds": 497920931,
+        "events": 4132
+      },
+      {
+        "month": "2021-07",
+        "milliseconds": 352572729,
+        "events": 2803
+      },
+      {
+        "month": "2021-08",
+        "milliseconds": 281277671,
+        "events": 2029
+      },
+      {
+        "month": "2021-09",
+        "milliseconds": 207861022,
+        "events": 1582
+      },
+      {
+        "month": "2021-10",
+        "milliseconds": 243913504,
+        "events": 1792
+      },
+      {
+        "month": "2021-11",
+        "milliseconds": 386357724,
+        "events": 3083
+      },
+      {
+        "month": "2021-12",
+        "milliseconds": 388309858,
+        "events": 3271
+      },
+      {
+        "month": "2022-01",
+        "milliseconds": 352028599,
+        "events": 3481
+      },
+      {
+        "month": "2022-02",
+        "milliseconds": 282129259,
+        "events": 2499
+      },
+      {
+        "month": "2022-03",
+        "milliseconds": 357721909,
+        "events": 3176
+      },
+      {
+        "month": "2022-04",
+        "milliseconds": 341983002,
+        "events": 3156
+      },
+      {
+        "month": "2022-05",
+        "milliseconds": 369324132,
+        "events": 3081
+      },
+      {
+        "month": "2022-06",
+        "milliseconds": 148076312,
+        "events": 1636
+      },
+      {
+        "month": "2022-07",
+        "milliseconds": 212881825,
+        "events": 2232
+      },
+      {
+        "month": "2022-08",
+        "milliseconds": 231448033,
+        "events": 1966
+      },
+      {
+        "month": "2022-09",
+        "milliseconds": 124022178,
+        "events": 1154
+      },
+      {
+        "month": "2022-10",
+        "milliseconds": 211407984,
+        "events": 1757
+      },
+      {
+        "month": "2022-11",
+        "milliseconds": 129290698,
+        "events": 1334
+      },
+      {
+        "month": "2022-12",
+        "milliseconds": 172514370,
+        "events": 1702
+      },
+      {
+        "month": "2023-01",
+        "milliseconds": 161482072,
+        "events": 1669
+      },
+      {
+        "month": "2023-02",
+        "milliseconds": 122518579,
+        "events": 1390
+      },
+      {
+        "month": "2023-03",
+        "milliseconds": 146095494,
+        "events": 1593
+      },
+      {
+        "month": "2023-04",
+        "milliseconds": 157990968,
+        "events": 1709
+      },
+      {
+        "month": "2023-05",
+        "milliseconds": 94293131,
+        "events": 1065
+      },
+      {
+        "month": "2023-06",
+        "milliseconds": 149907944,
+        "events": 1829
+      },
+      {
+        "month": "2023-07",
+        "milliseconds": 102583298,
+        "events": 1433
+      },
+      {
+        "month": "2023-08",
+        "milliseconds": 130577416,
+        "events": 1676
+      },
+      {
+        "month": "2023-09",
+        "milliseconds": 97707064,
+        "events": 1318
+      },
+      {
+        "month": "2023-10",
+        "milliseconds": 106898092,
+        "events": 1337
+      },
+      {
+        "month": "2023-11",
+        "milliseconds": 108654085,
+        "events": 1272
+      },
+      {
+        "month": "2023-12",
+        "milliseconds": 107063257,
+        "events": 1003
+      },
+      {
+        "month": "2024-01",
+        "milliseconds": 119853916,
+        "events": 1317
+      },
+      {
+        "month": "2024-02",
+        "milliseconds": 106308630,
+        "events": 1090
+      },
+      {
+        "month": "2024-03",
+        "milliseconds": 92303636,
+        "events": 972
+      },
+      {
+        "month": "2024-04",
+        "milliseconds": 72035269,
+        "events": 565
+      },
+      {
+        "month": "2024-05",
+        "milliseconds": 44885701,
+        "events": 370
+      },
+      {
+        "month": "2024-06",
+        "milliseconds": 68606631,
+        "events": 669
+      },
+      {
+        "month": "2024-07",
+        "milliseconds": 72227986,
+        "events": 541
+      },
+      {
+        "month": "2024-08",
+        "milliseconds": 88410367,
+        "events": 765
+      },
+      {
+        "month": "2024-09",
+        "milliseconds": 96245350,
+        "events": 894
+      },
+      {
+        "month": "2024-10",
+        "milliseconds": 92616427,
+        "events": 813
+      },
+      {
+        "month": "2024-11",
+        "milliseconds": 65253021,
+        "events": 601
+      },
+      {
+        "month": "2024-12",
+        "milliseconds": 83066015,
+        "events": 731
+      },
+      {
+        "month": "2025-01",
+        "milliseconds": 108124383,
+        "events": 833
+      },
+      {
+        "month": "2025-02",
+        "milliseconds": 128085455,
+        "events": 1079
+      },
+      {
+        "month": "2025-03",
+        "milliseconds": 72440608,
+        "events": 734
+      },
+      {
+        "month": "2025-04",
+        "milliseconds": 95009157,
+        "events": 871
+      },
+      {
+        "month": "2025-05",
+        "milliseconds": 78042825,
+        "events": 699
+      },
+      {
+        "month": "2025-06",
+        "milliseconds": 66195810,
+        "events": 550
+      },
+      {
+        "month": "2025-07",
+        "milliseconds": 90981837,
+        "events": 821
+      },
+      {
+        "month": "2025-08",
+        "milliseconds": 68475329,
+        "events": 820
+      },
+      {
+        "month": "2025-09",
+        "milliseconds": 49603619,
+        "events": 595
+      },
+      {
+        "month": "2025-10",
+        "milliseconds": 46524716,
+        "events": 507
+      },
+      {
+        "month": "2025-11",
+        "milliseconds": 57302126,
+        "events": 589
+      },
+      {
+        "month": "2025-12",
+        "milliseconds": 62421076,
+        "events": 855
+      },
+      {
+        "month": "2026-01",
+        "milliseconds": 53749852,
+        "events": 543
+      },
+      {
+        "month": "2026-02",
+        "milliseconds": 124994939,
+        "events": 1075
+      },
+      {
+        "month": "2026-03",
+        "milliseconds": 95480247,
+        "events": 961
+      },
+      {
+        "month": "2026-04",
+        "milliseconds": 116915609,
+        "events": 897
+      },
+      {
+        "month": "2026-05",
+        "milliseconds": 112670606,
+        "events": 1137
+      },
+      {
+        "month": "2026-06",
+        "milliseconds": 98506716,
+        "events": 975
+      },
+      {
+        "month": "2026-07",
+        "milliseconds": 11748558,
+        "events": 123
+      }
+    ]
+  }
+}

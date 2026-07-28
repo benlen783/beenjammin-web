@@ -1,0 +1,31 @@
+# Secrets
+.env*
+!.env.example
+
+# Private data and exports
+*.sql
+*.dump
+*.backup
+*.zip
+
+# Private key and service credential formats
+*.key
+*.pem
+*.p12
+*.pfx
+credentials*.json
+service-account*.json
+
+# Dependencies and builds
+node_modules/
+.next/
+out/
+coverage/
+.tools/
+.agents/
+.codex/
+*.tsbuildinfo
+
+# Local tools and operating system files
+.DS_Store
+*.log
