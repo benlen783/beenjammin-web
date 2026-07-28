@@ -24,7 +24,8 @@ import {
 import type { LastFmNowPlaying } from "@/lib/lastfm";
 
 const LAST_USERNAME_KEY = "beenjammin:dashboard:lastfm-username";
-const PAGE_REQUEST_DELAY_MS = 650;
+const PAGE_REQUEST_DELAY_MS = 500;
+const PAGE_REQUEST_CONCURRENCY = 3;
 const PAGE_REQUEST_ATTEMPTS = 4;
 const numberFormatter = new Intl.NumberFormat("en-US");
 const viewerRanges = [
@@ -290,15 +291,12 @@ export function LastFmDashboardExplorer() {
       return;
     }
 
-    const requestTime =
-      (Date.now() -
-        startedAt -
-        Math.max(0, next.page - 1) * PAGE_REQUEST_DELAY_MS) /
-      next.page;
+    const averagePageTime = Math.max(
+      PAGE_REQUEST_DELAY_MS,
+      (Date.now() - startedAt) / next.page,
+    );
     setEstimatedTimeRemaining(
-      formatEstimatedTime(
-        remainingPages * (Math.max(100, requestTime) + PAGE_REQUEST_DELAY_MS),
-      ),
+      formatEstimatedTime(remainingPages * averagePageTime),
     );
   }
 
@@ -314,26 +312,66 @@ export function LastFmDashboardExplorer() {
 
     try {
       const firstPage = await fetchPage(requestedUsername, 1);
-      const plays = [...firstPage.plays];
+      const pageResults = Array.from(
+        { length: firstPage.totalPages + 1 },
+        () => [] as PublicLastFmPlay[],
+      );
+      pageResults[1] = firstPage.plays;
       reportProgress({
         page: 1,
         totalPages: firstPage.totalPages,
-        plays: plays.length,
+        plays: firstPage.plays.length,
         truncated: firstPage.truncated,
       });
 
-      for (let page = 2; page <= firstPage.totalPages; page += 1) {
-        await wait(PAGE_REQUEST_DELAY_MS);
-        const result = await fetchPage(requestedUsername, page);
-        plays.push(...result.plays);
-        reportProgress({
-          page,
-          totalPages: firstPage.totalPages,
-          plays: plays.length,
-          truncated: firstPage.truncated,
-        });
+      let nextPage = 2;
+      let nextRequestAt = Date.now() + PAGE_REQUEST_DELAY_MS;
+      let completedPages = 1;
+      let completedPlays = firstPage.plays.length;
+      let stopped = false;
+
+      async function loadNextPages() {
+        while (!stopped) {
+          const page = nextPage;
+          nextPage += 1;
+          if (page > firstPage.totalPages) return;
+
+          const requestAt = Math.max(Date.now(), nextRequestAt);
+          nextRequestAt = requestAt + PAGE_REQUEST_DELAY_MS;
+          await wait(Math.max(0, requestAt - Date.now()));
+          if (stopped) return;
+
+          try {
+            const result = await fetchPage(requestedUsername, page);
+            pageResults[page] = result.plays;
+            completedPages += 1;
+            completedPlays += result.plays.length;
+            reportProgress({
+              page: completedPages,
+              totalPages: firstPage.totalPages,
+              plays: completedPlays,
+              truncated: firstPage.truncated,
+            });
+          } catch (pageError) {
+            stopped = true;
+            throw pageError;
+          }
+        }
       }
 
+      const workerCount = Math.min(
+        PAGE_REQUEST_CONCURRENCY,
+        Math.max(0, firstPage.totalPages - 1),
+      );
+      const workerResults = await Promise.allSettled(
+        Array.from({ length: workerCount }, () => loadNextPages()),
+      );
+      const failedWorker = workerResults.find(
+        (result) => result.status === "rejected",
+      );
+      if (failedWorker?.status === "rejected") throw failedWorker.reason;
+
+      const plays = pageResults.flat();
       const unique = new Map(
         plays.map((play) => [
           `${play.playedAt}\u001f${play.artist.toLocaleLowerCase()}\u001f${play.track.toLocaleLowerCase()}`,
@@ -433,7 +471,7 @@ export function LastFmDashboardExplorer() {
             {estimatedTimeRemaining
               ? `Estimated: ${estimatedTimeRemaining}. `
               : "Estimating time remaining… "}
-            Keep this tab open until the import finishes.
+            Keep this tab open—closing or reloading it will stop the import.
           </small>
         </section>
       ) : null}

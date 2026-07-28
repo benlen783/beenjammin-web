@@ -37,7 +37,7 @@ export async function GET(request: Request) {
   }
 
   const rateLimited = enforceRateLimit(request, "lastfm-public-history", {
-    clientLimit: 120,
+    clientLimit: 150,
     globalLimit: 300,
     windowMs: 60_000,
   });
