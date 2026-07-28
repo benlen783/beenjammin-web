@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import { Analytics } from "@vercel/analytics/next";
 
 import "@/app/globals.css";
 import { AppNav } from "@/components/AppNav";
@@ -25,6 +26,7 @@ export default function RootLayout({
           <AppNav />
         </Suspense>
         {children}
+        <Analytics />
       </body>
     </html>
   );
