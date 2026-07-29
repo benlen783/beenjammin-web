@@ -5,7 +5,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
 function dashboardViewHref(path: "/" | "/command-center", range?: string) {
-  return range && range !== "12-months" ? `${path}?range=${range}` : path;
+  return range && range !== "all-time" ? `${path}?range=${range}` : path;
 }
 
 function commandModeHref(path: string, commandMode: boolean) {

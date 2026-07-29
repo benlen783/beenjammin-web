@@ -27,6 +27,24 @@ export default function RootLayout({
           <AppNav />
         </Suspense>
         {children}
+        <footer className="site-footer">
+          <nav aria-label="External links">
+            <a
+              href="https://benlenox.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Portfolio <span aria-hidden="true">↗</span>
+            </a>
+            <a
+              href="https://github.com/benlen783"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub <span aria-hidden="true">↗</span>
+            </a>
+          </nav>
+        </footer>
         <Analytics />
         <SpeedInsights />
       </body>

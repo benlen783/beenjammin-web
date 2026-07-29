@@ -10,7 +10,7 @@ import {
 
 export default function DashboardPage() {
   const ranges = getDashboardSnapshots();
-  const defaultData = getDashboardSnapshot("12-months");
+  const defaultData = getDashboardSnapshot("all-time");
 
   return (
     <main className="app-shell">
@@ -22,7 +22,7 @@ export default function DashboardPage() {
         </summary>
         <div className="example-data-content">
           <Suspense
-            fallback={<Dashboard data={defaultData} range="12-months" />}
+            fallback={<Dashboard data={defaultData} range="all-time" />}
           >
             <DashboardSnapshotView ranges={ranges} mode="dashboard" />
           </Suspense>

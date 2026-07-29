@@ -15,11 +15,13 @@ export function DateRangeToggle({
       role="group"
       aria-label="Dashboard date range"
     >
-      {DASHBOARD_RANGES.map((range) => (
+      {DASHBOARD_RANGES.filter(
+        (range) => range.key !== "this-year" && range.key !== "90-days",
+      ).map((range) => (
         <Link
           key={range.key}
           href={
-            range.key === "12-months"
+            range.key === "all-time"
               ? basePath
               : `${basePath}?range=${range.key}`
           }

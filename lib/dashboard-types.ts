@@ -1,5 +1,5 @@
 export const DASHBOARD_RANGES = [
-  { key: "30-days", label: "30 days", shortLabel: "30d" },
+  { key: "30-days", label: "1 month", shortLabel: "1m" },
   { key: "90-days", label: "90 days", shortLabel: "90d" },
   { key: "6-months", label: "6 months", shortLabel: "6m" },
   { key: "12-months", label: "12 months", shortLabel: "12m" },
@@ -8,6 +8,11 @@ export const DASHBOARD_RANGES = [
 ] as const;
 
 export type DashboardRange = (typeof DASHBOARD_RANGES)[number]["key"];
+
+export type DashboardDateRange = {
+  startDate: string;
+  endDate: string;
+};
 
 export type DashboardTotals = {
   plays: number;
@@ -195,12 +200,11 @@ export type DashboardData = {
 export function parseDashboardRange(value: string | undefined): DashboardRange {
   return DASHBOARD_RANGES.some((range) => range.key === value)
     ? (value as DashboardRange)
-    : "12-months";
+    : "all-time";
 }
 
 export function getDashboardRangeLabel(range: DashboardRange) {
   return (
-    DASHBOARD_RANGES.find((option) => option.key === range)?.label ??
-    "12 months"
+    DASHBOARD_RANGES.find((option) => option.key === range)?.label ?? "All time"
   );
 }

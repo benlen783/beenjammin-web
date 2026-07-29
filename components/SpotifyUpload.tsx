@@ -15,6 +15,7 @@ import {
   SpotifySkipTimingChart,
   SpotifyWeekHeatmap,
 } from "@/charts/SpotifyInsightCharts";
+import { trackDashboardCreated } from "@/lib/dashboard-analytics";
 import type { SpotifyDeepDiveSummary } from "@/lib/spotify-deep-dive";
 import {
   SPOTIFY_MAX_COMPRESSED_BYTES,
@@ -286,6 +287,7 @@ export function SpotifyUpload({
         if (message.type === "complete") {
           setSummary(message.summary);
           setShowingPublicSnapshot(false);
+          trackDashboardCreated("spotify");
           setProcessing(false);
           setProgress(null);
           clearWorkerWatchdog();

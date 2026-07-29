@@ -30,11 +30,20 @@ export async function getCachedPublicHistory(username: string) {
       .get(usernameKey(username));
     request.onsuccess = () => {
       const result = request.result as
-        (PublicLastFmHistory & { usernameKey: string }) | undefined;
+        | (PublicLastFmHistory & {
+            usernameKey: string;
+            nowPlaying?: unknown;
+          })
+        | undefined;
       if (!result) resolve(null);
       else {
-        const { usernameKey: _key, ...history } = result;
+        const {
+          usernameKey: _key,
+          nowPlaying: _legacyNowPlaying,
+          ...history
+        } = result;
         void _key;
+        void _legacyNowPlaying;
         resolve(history);
       }
     };

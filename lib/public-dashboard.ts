@@ -1,14 +1,13 @@
 import type {
   BehaviorStats,
   DashboardData,
+  DashboardDateRange,
   DashboardRange,
   Daypart,
   LifetimeRecords,
   SeasonalStats,
   SeasonName,
 } from "@/lib/dashboard-types";
-import type { LastFmNowPlaying } from "@/lib/lastfm";
-
 const DAY_MS = 86_400_000;
 const SESSION_GAP_MS = 30 * 60_000;
 const weekdayNumbers: Record<string, number> = {
@@ -41,7 +40,6 @@ export type PublicLastFmPlay = {
 export type PublicLastFmHistory = {
   username: string;
   plays: PublicLastFmPlay[];
-  nowPlaying: LastFmNowPlaying | null;
   cachedAt: string;
   truncated?: boolean;
   totalAvailable?: number;
@@ -157,7 +155,25 @@ function buildSessions(plays: AnalyzedPlay[]) {
   return sessions;
 }
 
-function rangeIncludes(play: AnalyzedPlay, range: DashboardRange, now: Date) {
+type PublicDashboardRange = DashboardRange | DashboardDateRange;
+
+function isDashboardDateRange(
+  range: PublicDashboardRange,
+): range is DashboardDateRange {
+  return typeof range === "object";
+}
+
+function rangeIncludes(
+  play: AnalyzedPlay,
+  range: PublicDashboardRange,
+  now: Date,
+) {
+  if (isDashboardDateRange(range)) {
+    return (
+      play.local.dateKey >= range.startDate &&
+      play.local.dateKey <= range.endDate
+    );
+  }
   if (range === "all-time") return true;
   if (range === "this-year") return play.local.year === localParts(now).year;
   const days = range === "30-days" ? 30 : range === "90-days" ? 90 : null;
@@ -167,7 +183,17 @@ function rangeIncludes(play: AnalyzedPlay, range: DashboardRange, now: Date) {
   return play.date >= cutoff;
 }
 
-function timelineBucket(range: DashboardRange) {
+function timelineBucket(range: PublicDashboardRange) {
+  if (isDashboardDateRange(range)) {
+    const span =
+      (Date.parse(`${range.endDate}T00:00:00Z`) -
+        Date.parse(`${range.startDate}T00:00:00Z`)) /
+        DAY_MS +
+      1;
+    if (span <= 90) return "day" as const;
+    if (span <= 365) return "week" as const;
+    return "month" as const;
+  }
   if (range === "30-days" || range === "90-days") return "day" as const;
   if (range === "6-months") return "week" as const;
   return "month" as const;
@@ -798,7 +824,7 @@ function buildSeasonal(plays: AnalyzedPlay[], now: Date): SeasonalStats {
 
 export function buildPublicDashboardData(
   history: PublicLastFmHistory,
-  range: DashboardRange,
+  range: PublicDashboardRange,
 ): DashboardData {
   const now = new Date();
   const allPlays = analyzePlays(history.plays);

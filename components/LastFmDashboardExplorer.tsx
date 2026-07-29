@@ -13,7 +13,8 @@ import {
   LASTFM_MAX_PUBLIC_SCROBBLES,
   LASTFM_USERNAME_MAX_LENGTH,
 } from "@/lib/config";
-import type { DashboardRange } from "@/lib/dashboard-types";
+import { trackDashboardCreated } from "@/lib/dashboard-analytics";
+import type { DashboardDateRange, DashboardRange } from "@/lib/dashboard-types";
 import {
   buildPublicDashboardData,
   type PublicLastFmHistory,
@@ -32,13 +33,14 @@ const PAGE_REQUEST_CONCURRENCY = 3;
 const PAGE_REQUEST_ATTEMPTS = 4;
 const numberFormatter = new Intl.NumberFormat("en-US");
 const viewerRanges = [
-  { key: "30-days", label: "30 days", shortLabel: "30d" },
-  { key: "90-days", label: "90 days", shortLabel: "90d" },
+  { key: "30-days", label: "1 month", shortLabel: "1m" },
   { key: "6-months", label: "6 months", shortLabel: "6m" },
   { key: "12-months", label: "12 months", shortLabel: "12m" },
-  { key: "this-year", label: "This year", shortLabel: "Year" },
   { key: "all-time", label: "All time", shortLabel: "All" },
+  { key: "custom", label: "Custom", shortLabel: "Dates" },
 ] as const;
+
+type ViewerRange = DashboardRange | "custom";
 
 type PublicPage = {
   plays: PublicLastFmPlay[];
@@ -65,6 +67,39 @@ function formatEstimatedTime(milliseconds: number) {
   return remainingMinutes
     ? `About ${hours}h ${remainingMinutes}m remaining`
     : `About ${hours} ${hours === 1 ? "hour" : "hours"} remaining`;
+}
+
+const listeningDateFormatter = new Intl.DateTimeFormat("en-US", {
+  timeZone: "America/Chicago",
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+});
+
+const rangeLabelFormatter = new Intl.DateTimeFormat("en-US", {
+  timeZone: "UTC",
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+});
+
+function listeningDateKey(playedAt: string) {
+  const parts = Object.fromEntries(
+    listeningDateFormatter
+      .formatToParts(new Date(playedAt))
+      .map((part) => [part.type, part.value]),
+  );
+  return `${parts.year}-${parts.month}-${parts.day}`;
+}
+
+function formatCustomRange(range: DashboardDateRange) {
+  const start = rangeLabelFormatter.format(
+    new Date(`${range.startDate}T00:00:00Z`),
+  );
+  const end = rangeLabelFormatter.format(
+    new Date(`${range.endDate}T00:00:00Z`),
+  );
+  return start === end ? start : `${start} – ${end}`;
 }
 
 async function fetchPage(username: string, page: number) {
@@ -110,21 +145,76 @@ async function fetchPage(username: string, page: number) {
   throw new Error("That Last.fm history could not be loaded.");
 }
 
-function ViewerDashboard({ history }: { history: PublicLastFmHistory }) {
-  const [range, setRange] = useState<DashboardRange>("12-months");
+function ViewerDashboard({
+  history,
+  nowPlaying,
+}: {
+  history: PublicLastFmHistory;
+  nowPlaying: LastFmNowPlaying | null;
+}) {
+  const availableDateRange = useMemo<DashboardDateRange | null>(() => {
+    if (!history.plays.length) return null;
+
+    let earliest = history.plays[0].playedAt;
+    let latest = earliest;
+    for (const play of history.plays) {
+      if (play.playedAt < earliest) earliest = play.playedAt;
+      if (play.playedAt > latest) latest = play.playedAt;
+    }
+    return {
+      startDate: listeningDateKey(earliest),
+      endDate: listeningDateKey(latest),
+    };
+  }, [history]);
+  const [range, setRange] = useState<ViewerRange>("all-time");
+  const [customStartDate, setCustomStartDate] = useState(
+    availableDateRange?.startDate ?? "",
+  );
+  const [customEndDate, setCustomEndDate] = useState(
+    availableDateRange?.endDate ?? "",
+  );
+  const [appliedCustomRange, setAppliedCustomRange] =
+    useState<DashboardDateRange | null>(availableDateRange);
+  const [customRangeError, setCustomRangeError] = useState<string | null>(null);
+  const activeRange =
+    range === "custom" ? (appliedCustomRange ?? "all-time") : range;
   const data = useMemo(
-    () => buildPublicDashboardData(history, range),
-    [history, range],
+    () => buildPublicDashboardData(history, activeRange),
+    [activeRange, history],
   );
   const scopeLabel =
-    viewerRanges.find((option) => option.key === range)?.label ?? "12 months";
+    range === "custom" && appliedCustomRange
+      ? formatCustomRange(appliedCustomRange)
+      : (viewerRanges.find((option) => option.key === range)?.label ??
+        "All time");
+
+  function selectRange(nextRange: ViewerRange) {
+    setRange(nextRange);
+    setCustomRangeError(null);
+  }
+
+  function applyCustomRange(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!customStartDate || !customEndDate) {
+      setCustomRangeError("Choose both a start date and an end date.");
+      return;
+    }
+    if (customStartDate > customEndDate) {
+      setCustomRangeError("The start date must be on or before the end date.");
+      return;
+    }
+
+    setAppliedCustomRange({
+      startDate: customStartDate,
+      endDate: customEndDate,
+    });
+    setCustomRangeError(null);
+    setRange("custom");
+  }
 
   return (
     <div className="public-dashboard">
-      <PlaybackCard
-        nowPlaying={history.nowPlaying}
-        recentPlay={data.recentPlay}
-      />
+      <PlaybackCard nowPlaying={nowPlaying} recentPlay={data.recentPlay} />
 
       <section className="range-section" aria-labelledby="viewer-range-heading">
         <div className="section-heading range-heading">
@@ -144,7 +234,7 @@ function ViewerDashboard({ history }: { history: PublicLastFmHistory }) {
                   option.key === range ? "range-option active" : "range-option"
                 }
                 key={option.key}
-                onClick={() => setRange(option.key)}
+                onClick={() => selectRange(option.key)}
                 aria-pressed={option.key === range}
               >
                 <span className="range-full">{option.label}</span>
@@ -153,6 +243,39 @@ function ViewerDashboard({ history }: { history: PublicLastFmHistory }) {
             ))}
           </div>
         </div>
+
+        {range === "custom" ? (
+          <form className="custom-date-range" onSubmit={applyCustomRange}>
+            <label>
+              <span>From</span>
+              <input
+                type="date"
+                value={customStartDate}
+                min={availableDateRange?.startDate}
+                max={availableDateRange?.endDate}
+                onChange={(event) => setCustomStartDate(event.target.value)}
+                required
+              />
+            </label>
+            <label>
+              <span>To</span>
+              <input
+                type="date"
+                value={customEndDate}
+                min={availableDateRange?.startDate}
+                max={availableDateRange?.endDate}
+                onChange={(event) => setCustomEndDate(event.target.value)}
+                required
+              />
+            </label>
+            <button type="submit">Apply dates</button>
+            {customRangeError ? (
+              <p className="custom-date-error" role="alert">
+                {customRangeError}
+              </p>
+            ) : null}
+          </form>
+        ) : null}
 
         <div className="metric-grid">
           {[
@@ -259,6 +382,9 @@ function ViewerDashboard({ history }: { history: PublicLastFmHistory }) {
 export function LastFmDashboardExplorer() {
   const [username, setUsername] = useState("");
   const [history, setHistory] = useState<PublicLastFmHistory | null>(null);
+  const [liveNowPlaying, setLiveNowPlaying] = useState<LastFmNowPlaying | null>(
+    null,
+  );
   const [loading, setLoading] = useState(false);
   const importStartedAt = useRef<number | null>(null);
   const [estimatedTimeRemaining, setEstimatedTimeRemaining] = useState<
@@ -285,6 +411,40 @@ export function LastFmDashboardExplorer() {
     });
   }, []);
 
+  const activeLiveUsername = history && !loading ? history.username : null;
+
+  useEffect(() => {
+    if (!activeLiveUsername) return;
+
+    const polledUsername = activeLiveUsername;
+    let cancelled = false;
+    let refreshing = false;
+
+    async function refreshNowPlaying() {
+      if (cancelled || refreshing || document.visibilityState !== "visible") {
+        return;
+      }
+
+      refreshing = true;
+      try {
+        const page = await fetchPage(polledUsername, 1);
+        if (!cancelled) setLiveNowPlaying(page.nowPlaying);
+      } catch {
+        if (!cancelled) setLiveNowPlaying(null);
+      } finally {
+        refreshing = false;
+      }
+    }
+
+    void refreshNowPlaying();
+    const interval = window.setInterval(() => void refreshNowPlaying(), 60_000);
+
+    return () => {
+      cancelled = true;
+      window.clearInterval(interval);
+    };
+  }, [activeLiveUsername]);
+
   function reportProgress(next: typeof progress) {
     setProgress(next);
     const startedAt = importStartedAt.current;
@@ -308,6 +468,7 @@ export function LastFmDashboardExplorer() {
     const requestedUsername = username.trim();
     if (!requestedUsername || loading) return;
     setLoading(true);
+    setLiveNowPlaying(null);
     importStartedAt.current = Date.now();
     setEstimatedTimeRemaining(null);
     setError(null);
@@ -384,7 +545,6 @@ export function LastFmDashboardExplorer() {
       const nextHistory: PublicLastFmHistory = {
         username: requestedUsername,
         plays: [...unique.values()],
-        nowPlaying: firstPage.nowPlaying,
         cachedAt: new Date().toISOString(),
         truncated: firstPage.truncated,
         totalAvailable: firstPage.total,
@@ -392,6 +552,7 @@ export function LastFmDashboardExplorer() {
       await cachePublicHistory(nextHistory);
       window.localStorage.setItem(LAST_USERNAME_KEY, requestedUsername);
       setHistory(nextHistory);
+      trackDashboardCreated("lastfm");
     } catch (loadError) {
       setError(
         loadError instanceof Error
@@ -409,6 +570,7 @@ export function LastFmDashboardExplorer() {
     if (history) await deleteCachedPublicHistory(history.username);
     window.localStorage.removeItem(LAST_USERNAME_KEY);
     setHistory(null);
+    setLiveNowPlaying(null);
     setProgress({ page: 0, totalPages: 0, plays: 0, truncated: false });
   }
 
@@ -425,7 +587,7 @@ export function LastFmDashboardExplorer() {
             Enter any public username. The analyzed history is cached only in
             this browser. Imports are capped at the most recent{" "}
             {LASTFM_MAX_PUBLIC_SCROBBLES.toLocaleString()}
-            {" scrobbles"}; the owner&apos;s example snapshot remains below.
+            {" scrobbles."}
           </p>
         </div>
         <form className="viewer-search" onSubmit={loadHistory}>
@@ -497,7 +659,11 @@ export function LastFmDashboardExplorer() {
               Clear cached user
             </button>
           </div>
-          <ViewerDashboard history={history} />
+          <ViewerDashboard
+            key={`${history.username}:${history.cachedAt}`}
+            history={history}
+            nowPlaying={liveNowPlaying}
+          />
         </>
       ) : null}
       {!history && !loading ? (
