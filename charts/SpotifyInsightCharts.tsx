@@ -27,7 +27,7 @@ export function SpotifyWeekHeatmap({
             data: { value: [number, number, number]; events: number };
           };
           const [hour, day, hours] = parameter.data.value;
-          return `${DAYS[day]} ${hour.toString().padStart(2, "0")}:00<br/><b>${hours.toFixed(2)}h</b> · ${parameter.data.events.toLocaleString()} plays`;
+          return `${DAYS[day]} ${hour.toString().padStart(2, "0")}:00\n${hours.toFixed(2)}h · ${parameter.data.events.toLocaleString()} plays`;
         },
       },
       xAxis: {
@@ -155,7 +155,7 @@ export function SpotifyAlbumEngagementChart({
             };
           };
           const [hours, completion, uniqueTracks] = parameter.data.value;
-          return `<b>${parameter.data.album}</b><br/>${parameter.data.artist}<br/>${hours.toFixed(2)}h · ${completion.toFixed(1)}% completed<br/>${uniqueTracks} tracks · ${parameter.data.events.toLocaleString()} plays`;
+          return `${parameter.data.album}\n${parameter.data.artist}\n${hours.toFixed(2)}h · ${completion.toFixed(1)}% completed\n${uniqueTracks} tracks · ${parameter.data.events.toLocaleString()} plays`;
         },
       },
       xAxis: {
@@ -513,7 +513,7 @@ export function SpotifySessionVarietyChart({
             };
           };
           const [minutes, artists, sessions] = parameter.data.value;
-          return `<b>${parameter.data.binLabel} sessions</b><br/>${minutes.toFixed(1)} average minutes<br/>${artists.toFixed(1)} artists · ${parameter.data.tracks.toFixed(1)} tracks<br/>${parameter.data.plays.toFixed(1)} plays · ${sessions.toLocaleString()} sessions`;
+          return `${parameter.data.binLabel} sessions\n${minutes.toFixed(1)} average minutes\n${artists.toFixed(1)} artists · ${parameter.data.tracks.toFixed(1)} tracks\n${parameter.data.plays.toFixed(1)} plays · ${sessions.toLocaleString()} sessions`;
         },
       },
       xAxis: {

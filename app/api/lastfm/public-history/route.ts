@@ -1,6 +1,9 @@
 import { z } from "zod";
 
-import { LASTFM_MAX_PUBLIC_PAGES } from "@/lib/config";
+import {
+  LASTFM_MAX_PUBLIC_PAGES,
+  LASTFM_USERNAME_MAX_LENGTH,
+} from "@/lib/config";
 import {
   buildLastFmUserAgent,
   fetchLastFmPublicHistoryPage,
@@ -11,7 +14,7 @@ import { PRIVATE_NO_STORE_HEADERS } from "@/lib/server/response";
 export const dynamic = "force-dynamic";
 
 const querySchema = z.object({
-  username: z.string().trim().min(1).max(100),
+  username: z.string().trim().min(1).max(LASTFM_USERNAME_MAX_LENGTH),
   page: z.coerce.number().int().min(1).max(LASTFM_MAX_PUBLIC_PAGES).default(1),
 });
 

@@ -27,7 +27,11 @@ export function BaseChart({ option, className, ariaLabel }: BaseChartProps) {
         chart = echarts.init(element, beenJamminChartTheme, {
           renderer: "canvas",
         });
-        chart.setOption(option, { notMerge: true });
+        const tooltip =
+          option.tooltip && !Array.isArray(option.tooltip)
+            ? { ...option.tooltip, renderMode: "richText" as const }
+            : option.tooltip;
+        chart.setOption({ ...option, tooltip }, { notMerge: true });
         return;
       }
 

@@ -16,8 +16,12 @@ import {
   SpotifyWeekHeatmap,
 } from "@/charts/SpotifyInsightCharts";
 import type { SpotifyDeepDiveSummary } from "@/lib/spotify-deep-dive";
-
-const MAX_COMPRESSED_BYTES = 250 * 1024 * 1024;
+import {
+  SPOTIFY_MAX_COMPRESSED_BYTES,
+  SPOTIFY_MAX_COMPRESSED_MEGABYTES,
+  SPOTIFY_MAX_JSON_FILES,
+  SPOTIFY_MAX_PROCESSING_MS,
+} from "@/lib/spotify-upload-limits";
 
 type WorkerMessage =
   | { type: "progress"; message: string; completed: number; total: number }
@@ -184,6 +188,7 @@ export function SpotifyUpload({
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const workerRef = useRef<Worker | null>(null);
+  const workerWatchdogRef = useRef<number | null>(null);
   const [files, setFiles] = useState<File[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [processing, setProcessing] = useState(false);
@@ -199,15 +204,24 @@ export function SpotifyUpload({
   useEffect(
     () => () => {
       workerRef.current?.terminate();
+      if (workerWatchdogRef.current !== null) {
+        window.clearTimeout(workerWatchdogRef.current);
+      }
     },
     [],
   );
+
+  function clearWorkerWatchdog() {
+    if (workerWatchdogRef.current === null) return;
+    window.clearTimeout(workerWatchdogRef.current);
+    workerWatchdogRef.current = null;
+  }
 
   function selectFiles(selected: FileList | null) {
     if (!selected) return;
     const next = [...selected];
 
-    if (!next.length || next.length > 100) {
+    if (!next.length || next.length > SPOTIFY_MAX_JSON_FILES) {
       setError("Choose between 1 and 100 Spotify export files.");
       return;
     }
@@ -216,9 +230,12 @@ export function SpotifyUpload({
       return;
     }
     if (
-      next.reduce((total, file) => total + file.size, 0) > MAX_COMPRESSED_BYTES
+      next.reduce((total, file) => total + file.size, 0) >
+      SPOTIFY_MAX_COMPRESSED_BYTES
     ) {
-      setError("The selected files exceed the 250 MB local-processing limit.");
+      setError(
+        `The selected files exceed the ${SPOTIFY_MAX_COMPRESSED_MEGABYTES} MB local-processing limit.`,
+      );
       return;
     }
 
@@ -236,6 +253,7 @@ export function SpotifyUpload({
       total: files.length,
     });
     workerRef.current?.terminate();
+    clearWorkerWatchdog();
 
     try {
       const payload = await Promise.all(
@@ -249,6 +267,15 @@ export function SpotifyUpload({
         { type: "module" },
       );
       workerRef.current = worker;
+      workerWatchdogRef.current = window.setTimeout(() => {
+        if (workerRef.current !== worker) return;
+        worker.terminate();
+        workerRef.current = null;
+        workerWatchdogRef.current = null;
+        setError("Processing exceeded the two-minute safety limit.");
+        setProcessing(false);
+        setProgress(null);
+      }, SPOTIFY_MAX_PROCESSING_MS);
 
       worker.onmessage = (event: MessageEvent<WorkerMessage>) => {
         const message = event.data;
@@ -261,6 +288,7 @@ export function SpotifyUpload({
           setShowingPublicSnapshot(false);
           setProcessing(false);
           setProgress(null);
+          clearWorkerWatchdog();
           worker.terminate();
           workerRef.current = null;
           return;
@@ -269,6 +297,7 @@ export function SpotifyUpload({
         setError(message.error);
         setProcessing(false);
         setProgress(null);
+        clearWorkerWatchdog();
         worker.terminate();
         workerRef.current = null;
       };
@@ -277,6 +306,7 @@ export function SpotifyUpload({
         setError("Spotify processing stopped unexpectedly.");
         setProcessing(false);
         setProgress(null);
+        clearWorkerWatchdog();
         worker.terminate();
         workerRef.current = null;
       };
@@ -286,6 +316,9 @@ export function SpotifyUpload({
         payload.map((file) => file.buffer),
       );
     } catch (processingError) {
+      workerRef.current?.terminate();
+      workerRef.current = null;
+      clearWorkerWatchdog();
       setError(
         processingError instanceof Error
           ? processingError.message
@@ -299,6 +332,7 @@ export function SpotifyUpload({
   function restorePublicSnapshot() {
     workerRef.current?.terminate();
     workerRef.current = null;
+    clearWorkerWatchdog();
     setFiles([]);
     setSummary(initialSummary);
     setShowingPublicSnapshot(true);
@@ -399,7 +433,7 @@ export function SpotifyUpload({
             ) : null}
           </div>
           <span className="upload-note">
-            ZIP or JSON · Up to 250 MB compressed
+            ZIP or JSON · Up to {SPOTIFY_MAX_COMPRESSED_MEGABYTES} MB compressed
           </span>
         </section>
       ) : showingPublicSnapshot ? (
@@ -423,7 +457,7 @@ export function SpotifyUpload({
             </button>
           </div>
           <span className="upload-note">
-            ZIP or JSON · Up to 250 MB compressed
+            ZIP or JSON · Up to {SPOTIFY_MAX_COMPRESSED_MEGABYTES} MB compressed
           </span>
         </section>
       ) : null}

@@ -9,7 +9,10 @@ import { RankedList } from "@/charts/RankedList";
 import { FeaturedInsight } from "@/components/FeaturedInsight";
 import { LifetimeCarousel } from "@/components/LifetimeCarousel";
 import { PlaybackCard } from "@/components/PlaybackCard";
-import { LASTFM_MAX_PUBLIC_SCROBBLES } from "@/lib/config";
+import {
+  LASTFM_MAX_PUBLIC_SCROBBLES,
+  LASTFM_USERNAME_MAX_LENGTH,
+} from "@/lib/config";
 import type { DashboardRange } from "@/lib/dashboard-types";
 import {
   buildPublicDashboardData,
@@ -436,6 +439,7 @@ export function LastFmDashboardExplorer() {
               placeholder="username"
               autoComplete="off"
               spellCheck={false}
+              maxLength={LASTFM_USERNAME_MAX_LENGTH}
             />
             <button type="submit" disabled={loading || !username.trim()}>
               {loading ? "Loading…" : history ? "Load user" : "Build dashboard"}

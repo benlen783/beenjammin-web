@@ -7,13 +7,19 @@ import {
   spotifyDeviceLabel,
   type SpotifyDeepDiveSummary,
 } from "@/lib/spotify-deep-dive";
-
-const MAX_COMPRESSED_BYTES = 250 * 1024 * 1024;
-const MAX_EXPANDED_BYTES = 2 * 1024 * 1024 * 1024;
-const MAX_JSON_BYTES = 512 * 1024 * 1024;
-const MAX_FILES = 100;
-const MAX_EVENTS = 10_000_000;
-const MAX_PROCESSING_MS = 120_000;
+import {
+  SPOTIFY_MAX_ARCHIVE_ENTRIES,
+  SPOTIFY_MAX_COMPRESSED_BYTES,
+  SPOTIFY_MAX_COMPRESSION_RATIO,
+  SPOTIFY_MAX_EVENTS,
+  SPOTIFY_MAX_EXPANDED_BYTES,
+  SPOTIFY_MAX_JSON_BYTES,
+  SPOTIFY_MAX_JSON_FILES,
+  SPOTIFY_MAX_PROCESSING_MS,
+  SPOTIFY_MAX_REASON_LENGTH,
+  SPOTIFY_MAX_TEXT_LENGTH,
+  SPOTIFY_MAX_TIMESTAMP_LENGTH,
+} from "@/lib/spotify-upload-limits";
 
 type InputFile = { name: string; buffer: ArrayBuffer };
 type ProcessMessage = { type: "process"; files: InputFile[] };
@@ -80,6 +86,12 @@ function postProgress(message: string, completed: number, total: number) {
 
 function normalizedKey(value: string) {
   return value.trim().replace(/\s+/g, " ").toLocaleLowerCase("en-US");
+}
+
+function boundedText(value: unknown, maximumLength: number) {
+  if (typeof value !== "string") return null;
+  const text = value.trim();
+  return text && text.length <= maximumLength ? text : null;
 }
 
 function incrementAggregate(
@@ -511,20 +523,24 @@ function selectTrackInsights(tracks: Map<string, TrackAggregate>) {
 
 function jsonEntriesFromFile(
   file: InputFile,
-  limits: { files: number; expandedBytes: number },
+  limits: {
+    archiveEntries: number;
+    files: number;
+    expandedBytes: number;
+  },
 ) {
   const lowerName = file.name.toLocaleLowerCase("en-US");
 
   if (lowerName.endsWith(".json")) {
     limits.files += 1;
     limits.expandedBytes += file.buffer.byteLength;
-    if (limits.files > MAX_FILES) {
+    if (limits.files > SPOTIFY_MAX_JSON_FILES) {
       throw new Error("The export contains too many JSON files.");
     }
-    if (file.buffer.byteLength > MAX_JSON_BYTES) {
+    if (file.buffer.byteLength > SPOTIFY_MAX_JSON_BYTES) {
       throw new Error(`${file.name} exceeds the JSON file-size limit.`);
     }
-    if (limits.expandedBytes > MAX_EXPANDED_BYTES) {
+    if (limits.expandedBytes > SPOTIFY_MAX_EXPANDED_BYTES) {
       throw new Error("The expanded export exceeds the safety limit.");
     }
     return [[file.name, new Uint8Array(file.buffer)]] as Array<
@@ -538,6 +554,11 @@ function jsonEntriesFromFile(
 
   const archive = unzipSync(new Uint8Array(file.buffer), {
     filter: (entry) => {
+      limits.archiveEntries += 1;
+      if (limits.archiveEntries > SPOTIFY_MAX_ARCHIVE_ENTRIES) {
+        throw new Error("The archive contains too many entries.");
+      }
+
       const name = entry.name.toLocaleLowerCase("en-US");
       const segments = entry.name.split(/[\\/]/).filter(Boolean);
       if (
@@ -553,14 +574,21 @@ function jsonEntriesFromFile(
 
       limits.files += 1;
       limits.expandedBytes += entry.originalSize;
-      if (limits.files > MAX_FILES) {
+      if (limits.files > SPOTIFY_MAX_JSON_FILES) {
         throw new Error("The export contains too many JSON files.");
       }
-      if (entry.originalSize > MAX_JSON_BYTES) {
+      if (entry.originalSize > SPOTIFY_MAX_JSON_BYTES) {
         throw new Error(`${entry.name} exceeds the JSON file-size limit.`);
       }
-      if (limits.expandedBytes > MAX_EXPANDED_BYTES) {
+      if (limits.expandedBytes > SPOTIFY_MAX_EXPANDED_BYTES) {
         throw new Error("The expanded export exceeds the safety limit.");
+      }
+      if (
+        entry.originalSize > 0 &&
+        (entry.size === 0 ||
+          entry.originalSize / entry.size > SPOTIFY_MAX_COMPRESSION_RATIO)
+      ) {
+        throw new Error(`${entry.name} has an unsafe compression ratio.`);
       }
       return true;
     },
@@ -578,14 +606,14 @@ export function processSpotifyFiles(
     0,
   );
 
-  if (!files.length || files.length > MAX_FILES) {
+  if (!files.length || files.length > SPOTIFY_MAX_JSON_FILES) {
     throw new Error("Choose between 1 and 100 Spotify export files.");
   }
-  if (compressedBytes > MAX_COMPRESSED_BYTES) {
+  if (compressedBytes > SPOTIFY_MAX_COMPRESSED_BYTES) {
     throw new Error("The selected files exceed the compressed-size limit.");
   }
 
-  const limits = { files: 0, expandedBytes: 0 };
+  const limits = { archiveEntries: 0, files: 0, expandedBytes: 0 };
   const entries = files.flatMap((file) => jsonEntriesFromFile(file, limits));
   if (!entries.length)
     throw new Error("No Spotify JSON history files were found.");
@@ -611,7 +639,7 @@ export function processSpotifyFiles(
   let coverageEndedAt = Number.NEGATIVE_INFINITY;
 
   entries.forEach(([name, bytes], fileIndex) => {
-    if (performance.now() - startedAt > MAX_PROCESSING_MS) {
+    if (performance.now() - startedAt > SPOTIFY_MAX_PROCESSING_MS) {
       throw new Error("Processing exceeded the two-minute safety limit.");
     }
 
@@ -627,23 +655,32 @@ export function processSpotifyFiles(
 
     for (const raw of parsed) {
       rawEventCount += 1;
-      if (rawEventCount > MAX_EVENTS) {
+      if (rawEventCount > SPOTIFY_MAX_EVENTS) {
         throw new Error("The export exceeds the event-count safety limit.");
       }
       if (
         rawEventCount % 10_000 === 0 &&
-        performance.now() - startedAt > MAX_PROCESSING_MS
+        performance.now() - startedAt > SPOTIFY_MAX_PROCESSING_MS
       ) {
         throw new Error("Processing exceeded the two-minute safety limit.");
       }
       if (!raw || typeof raw !== "object") continue;
       const event = raw as SpotifyEvent;
+      const timestamp = boundedText(event.ts, SPOTIFY_MAX_TIMESTAMP_LENGTH);
+      const track = boundedText(
+        event.master_metadata_track_name,
+        SPOTIFY_MAX_TEXT_LENGTH,
+      );
+      const artist = boundedText(
+        event.master_metadata_album_artist_name,
+        SPOTIFY_MAX_TEXT_LENGTH,
+      );
       if (
-        typeof event.master_metadata_track_name !== "string" ||
-        typeof event.master_metadata_album_artist_name !== "string" ||
+        !timestamp ||
+        !track ||
+        !artist ||
         event.episode_name != null ||
         event.episode_show_name != null ||
-        typeof event.ts !== "string" ||
         typeof event.ms_played !== "number" ||
         !Number.isFinite(event.ms_played) ||
         event.ms_played < 0
@@ -651,11 +688,8 @@ export function processSpotifyFiles(
         continue;
       }
 
-      const playedAt = new Date(event.ts).getTime();
+      const playedAt = new Date(timestamp).getTime();
       if (!Number.isFinite(playedAt)) continue;
-      const track = event.master_metadata_track_name.trim();
-      const artist = event.master_metadata_album_artist_name.trim();
-      if (!track || !artist) continue;
 
       totalEvents += 1;
       totalMilliseconds += event.ms_played;
@@ -664,24 +698,16 @@ export function processSpotifyFiles(
       if (event.offline === true) offlineMilliseconds += event.ms_played;
 
       const platform = spotifyDeviceLabel(
-        typeof event.platform === "string" && event.platform.trim()
-          ? event.platform.trim()
-          : "Unknown device",
+        boundedText(event.platform, SPOTIFY_MAX_TEXT_LENGTH) ??
+          "Unknown device",
       );
       const reasonStart =
-        typeof event.reason_start === "string" && event.reason_start.trim()
-          ? event.reason_start.trim()
-          : "unknown";
+        boundedText(event.reason_start, SPOTIFY_MAX_REASON_LENGTH) ?? "unknown";
       const reasonEnd =
-        typeof event.reason_end === "string" && event.reason_end.trim()
-          ? event.reason_end.trim()
-          : "unknown";
-      const rawCountry =
-        typeof event.conn_country === "string" && event.conn_country.trim()
-          ? event.conn_country.trim().toUpperCase()
-          : "Unknown country";
+        boundedText(event.reason_end, SPOTIFY_MAX_REASON_LENGTH) ?? "unknown";
+      const rawCountry = boundedText(event.conn_country, 8)?.toUpperCase();
       const country =
-        /^[A-Z]{2}$/.test(rawCountry) && rawCountry !== "ZZ"
+        rawCountry && /^[A-Z]{2}$/.test(rawCountry) && rawCountry !== "ZZ"
           ? rawCountry
           : "Unknown country";
       const playedDate = new Date(playedAt);
@@ -711,11 +737,11 @@ export function processSpotifyFiles(
         shuffled,
         directChoice: reasonStart === "clickrow" || reasonStart === "playbtn",
       });
-      if (
-        typeof event.master_metadata_album_album_name === "string" &&
-        event.master_metadata_album_album_name.trim()
-      ) {
-        const album = event.master_metadata_album_album_name.trim();
+      const album = boundedText(
+        event.master_metadata_album_album_name,
+        SPOTIFY_MAX_TEXT_LENGTH,
+      );
+      if (album) {
         const albumKey = `${normalizedKey(artist)}\u001f${normalizedKey(album)}`;
         const albumAggregate = albums.get(albumKey) ?? {
           album,

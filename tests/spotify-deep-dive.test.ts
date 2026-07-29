@@ -1,10 +1,23 @@
 import { describe, expect, it } from "vitest";
+import { zipSync } from "fflate";
 
 import {
   spotifyDeepDiveSummarySchema,
   spotifyDeviceLabel,
 } from "@/lib/spotify-deep-dive";
+import {
+  SPOTIFY_MAX_ARCHIVE_ENTRIES,
+  SPOTIFY_MAX_EVENTS,
+  SPOTIFY_MAX_TEXT_LENGTH,
+} from "@/lib/spotify-upload-limits";
 import { processSpotifyFiles } from "@/workers/spotify.worker";
+
+function arrayBuffer(bytes: Uint8Array) {
+  return bytes.buffer.slice(
+    bytes.byteOffset,
+    bytes.byteOffset + bytes.byteLength,
+  ) as ArrayBuffer;
+}
 
 function event(index: number, overrides: Record<string, unknown> = {}) {
   return {
@@ -159,6 +172,65 @@ describe("Spotify Deep Dive worker analytics", () => {
         { name: "history.txt", buffer: new ArrayBuffer(1) },
       ]),
     ).toThrow("Only ZIP and JSON files are accepted");
+  });
+
+  it("ignores events with oversized display text", () => {
+    const events = [
+      event(0),
+      event(1, {
+        master_metadata_track_name: "x".repeat(SPOTIFY_MAX_TEXT_LENGTH + 1),
+      }),
+    ];
+    const encoded = new TextEncoder().encode(JSON.stringify(events));
+    const summary = processSpotifyFiles([
+      { name: "history.json", buffer: arrayBuffer(encoded) },
+    ]);
+
+    expect(summary.totalEvents).toBe(1);
+  });
+
+  it("rejects exports over the event-count limit", () => {
+    const encoded = new TextEncoder().encode(
+      JSON.stringify(
+        Array.from({ length: SPOTIFY_MAX_EVENTS + 1 }, () => null),
+      ),
+    );
+
+    expect(() =>
+      processSpotifyFiles([
+        { name: "history.json", buffer: arrayBuffer(encoded) },
+      ]),
+    ).toThrow("event-count safety limit");
+  });
+
+  it("rejects ZIP entries with an unsafe compression ratio", () => {
+    const highlyCompressible = new Uint8Array(2 * 1024 * 1024).fill(32);
+    const archive = zipSync(
+      { "Streaming_History_Audio_0.json": highlyCompressible },
+      { level: 9 },
+    );
+
+    expect(() =>
+      processSpotifyFiles([
+        { name: "history.zip", buffer: arrayBuffer(archive) },
+      ]),
+    ).toThrow("unsafe compression ratio");
+  });
+
+  it("counts rejected files when enforcing the archive-entry limit", () => {
+    const entries = Object.fromEntries(
+      Array.from({ length: SPOTIFY_MAX_ARCHIVE_ENTRIES + 1 }, (_, index) => [
+        `ignored-${index}.txt`,
+        new Uint8Array(),
+      ]),
+    );
+    const archive = zipSync(entries);
+
+    expect(() =>
+      processSpotifyFiles([
+        { name: "history.zip", buffer: arrayBuffer(archive) },
+      ]),
+    ).toThrow("archive contains too many entries");
   });
 
   it("accepts long-lived exports with more than 100 platform labels", () => {
