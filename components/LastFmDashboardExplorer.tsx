@@ -582,7 +582,7 @@ export function LastFmDashboardExplorer() {
       <div className="viewer-intro">
         <div>
           <p className="eyebrow">Try your own listening history</p>
-          <h2 id="lastfm-explorer-heading">Build a Dashboard from Last.fm</h2>
+          <h1 id="lastfm-explorer-heading">Build a Dashboard from Last.fm</h1>
           <p>
             Enter any public username. The analyzed history is cached only in
             this browser. Imports are capped at the most recent{" "}

@@ -10,6 +10,11 @@ import {
 
 export const metadata: Metadata = {
   title: "Command Center",
+  description:
+    "Explore Last.fm listening stats in a compact dashboard with top artists, tracks, activity patterns, streaks, and lifetime records.",
+  alternates: {
+    canonical: "/command-center",
+  },
 };
 
 export default function CommandCenterPage() {

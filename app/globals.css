@@ -339,7 +339,7 @@ html.command-mode .site-footer {
   margin-bottom: 28px;
 }
 
-.viewer-intro h2 {
+.viewer-intro h1 {
   max-width: 850px;
   margin: 0;
   font-size: clamp(25px, 2.8vw, 38px);
@@ -430,7 +430,7 @@ html.command-mode .site-footer {
   text-align: center;
 }
 
-.lastfm-dashboard-explorer:not(.has-visitor-history) .viewer-intro h2 {
+.lastfm-dashboard-explorer:not(.has-visitor-history) .viewer-intro h1 {
   max-width: none;
   font-size: clamp(38px, 4.5vw, 62px);
   line-height: 0.98;
@@ -3312,7 +3312,7 @@ html.command-mode .site-footer {
     text-align: left;
   }
 
-  .viewer-intro h2 {
+  .viewer-intro h1 {
     font-size: 39px;
   }
 

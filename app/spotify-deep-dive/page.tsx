@@ -4,7 +4,12 @@ import { SpotifyUpload } from "@/components/SpotifyUpload";
 import { getPublicSpotifySnapshot } from "@/lib/spotify-snapshot";
 
 export const metadata: Metadata = {
-  title: "Spotify Deep Dive",
+  title: "Spotify Listening History Analyzer",
+  description:
+    "Analyze your complete Spotify streaming history for skips, listening time, shuffle behavior, playback patterns, top artists, albums, and tracks. Files stay in your browser.",
+  alternates: {
+    canonical: "/spotify-deep-dive",
+  },
 };
 
 export default function SpotifyDeepDivePage() {
