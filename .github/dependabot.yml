@@ -5,6 +5,12 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    ignore:
+      # Major upgrades need compatibility review and should not be bundled with
+      # routine updates. This does not suppress Dependabot security updates.
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-major"
     groups:
       npm-dependencies:
         patterns:
